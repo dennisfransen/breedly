@@ -9,7 +9,7 @@
 
       <v-spacer></v-spacer>
   
-      <v-btn class="uppercase white--text" route to="/signin">
+      <v-btn class="uppercase black--text" route to="/signin">
         <span>Logga in</span>
       </v-btn>
     </v-toolbar>
