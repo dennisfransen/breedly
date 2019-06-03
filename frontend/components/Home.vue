@@ -1,8 +1,8 @@
 <template>
     <div class="home">
-        <h1>{{ msg }}</h1>
-        <v-btn small>Home</v-btn>
+        <v-btn fab small>Home</v-btn>
         <p><router-link to="/about">About</router-link></p>
+        <v-icon large color="green darken-2">business</v-icon>
     </div>
 </template>
 
