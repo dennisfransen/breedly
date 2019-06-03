@@ -4,8 +4,7 @@ module.exports = {
   entry: './index.js',
   mode: 'development',
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader']
       },
@@ -25,5 +24,10 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin()
-  ]
+  ],
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.js'
+    }
+  }
 }
