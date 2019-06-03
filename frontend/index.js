@@ -4,3 +4,4 @@ import VueRouter from 'vue-router'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
+
