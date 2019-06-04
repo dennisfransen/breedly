@@ -16,52 +16,23 @@
   
       <v-spacer></v-spacer>
   
+      <v-layout row wrap class="marginLogin">
+        <v-card v-if="login" class="test">
+          <v-card-title>
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Password">
+          </v-card-title>
+          <v-card-actions>
+            <v-btn small >Login</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-layout>
+  
       <v-btn flat @click="login = !login">Login</v-btn>
-  
-  
-      <!-- <v-flex xs12 md4 lg2>
-          <v-expansion-panel>
-          <v-expansion-panel-content>
-            <template v-slot:header>
-              <div>Login</div>
-</template>
-          <v-card>
-            <v-card-text>
-              <input placeholder="email">
-              <input placeholder="password">
-            </v-card-text>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      </v-flex> -->
-      
-     
-  <!-- <v-expansion-panel>
-    <v-expansion-panel-content v-for="link in links" :key="link">
-<template v-slot:header>
-  <div>
-    Item</div>
-</template>
-      <v-card>
-        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
-      </v-card>
-    </v-expansion-panel-content>
-  </v-expansion-panel> -->
-
+      <v-btn flat>Register</v-btn>
     </v-toolbar>
-    <v-layout row wrap right class="marginLogin">
-      <v-card v-if="login">
-        <v-card-title>
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Password">
-        </v-card-title>
-        <v-card-actions>
-          <v-btn>Login</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-layout>
-    
-
+  
+  
   </nav>
 </template>
 
@@ -104,6 +75,10 @@
   }
   
   .marginLogin {
-    margin-top: 100px;
+    margin-top: 12em;
+    margin-left: 23.3em;
+  }
+  .test {
+    min-width: 20em;
   }
 </style>

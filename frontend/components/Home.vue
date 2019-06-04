@@ -32,18 +32,6 @@
     .home {
         background-image: url('../assets/Dog_Background.jpg');
         background-size: cover;
-        height: 100%;
+        height: 53em;
     }
-    
-    
-    /* .photoSettings{
-            position: relative;
-            background-size: 100%;
-        }
-        .textSettings{
-            position: absolute; 
-            top: 200px; 
-            left: 0; 
-            width: 100%; 
-        } */
 </style>
