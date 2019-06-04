@@ -1,6 +1,6 @@
 <template>
     <div class="about">
-
+    
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex v-for="prop in aboutProps" :key="prop.text" xs4>
@@ -17,17 +17,25 @@
 </template>
 
 <script>
-export default {
-    name: 'home',
-    data() {
-        return {
-            aboutProps: [
-                {text: "Vision", img: "./assets/eye-icon.png"},
-                {text: "Mission", img: "./assets/rocket-icon.png"},
-                {text: "Values", img: "./assets/check-icon.png" },
-            ],
-            msg: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde.'
+    export default {
+        name: 'home',
+        data() {
+            return {
+                aboutProps: [{
+                        text: "Vision",
+                        img: "./assets/eye-icon.png"
+                    },
+                    {
+                        text: "Mission",
+                        img: "./assets/rocket-icon.png"
+                    },
+                    {
+                        text: "Values",
+                        img: "./assets/check-icon.png"
+                    },
+                ],
+                msg: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde.'
+            }
         }
     }
-}
 </script>
