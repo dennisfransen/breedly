@@ -15,7 +15,6 @@
             <v-card flat tile>
                 <v-text-field
                     v-model="email"
-                    :rules="emailRules"
                     label="E-mail"
                     required
                 ></v-text-field>
@@ -23,7 +22,6 @@
             <v-card flat tile>
                 <v-text-field
                     v-model="password"
-                    :rules="password"
                     label="Password"
                     :type="'password'"
                     required
