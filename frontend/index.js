@@ -5,10 +5,14 @@ import App from './components/App.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Register from './components/Register.vue'
-import 'vuetify/dist/vuetify.min.css'
+// import '@mdi/font/css/materialdesignicons.css'
+// import 'vuetify/dist/vuetify.min.css'
+// import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(Router)
-Vue.use(Vuetify, { iconfont: 'mdi' })
+Vue.use(Vuetify, {
+    iconfont: 'mdi'
+  })
 
 const router = new Router({
     routes: [

@@ -42,3 +42,10 @@
         }
     }
 </script>
+
+<style scoped>
+    .about {
+        /* temporary  */
+        background-color: gray;
+    }
+</style>
