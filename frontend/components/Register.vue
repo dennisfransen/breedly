@@ -5,7 +5,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
         </v-card-actions>
-        <v-container v-bind="{ [`grid-list-${size}`]: true }" fluid>
+        <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
           <v-layout row wrap>
             <v-flex
               v-for="n in 1"

@@ -10,7 +10,6 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Router)
 Vue.use(Vuetify, { iconfont: 'mdi' })
 
-
 const router = new Router({
     routes: [
         { path: '/', name: 'home', component: Home },
@@ -24,4 +23,3 @@ new Vue({
     render: h => h(App),
     router
 })
-
