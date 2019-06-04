@@ -51,7 +51,6 @@
         <v-list-tile
           v-for="(county, index) in countyArray"
           :key="index"
-          v-scroll="callback"
           @click="chooseCounty(index)"
         >
           <v-list-tile-title>{{ county }}</v-list-tile-title>
@@ -98,8 +97,11 @@
                 'Västra Götaland', 
                 'Örebro',
                 'Östergötland'],
-                chosenCounty: 'County'
-
+                email: null,
+                name: null,
+                password: null,
+                chosenCounty: 'County',
+                userInfo: null
             }
         },
         methods: {
@@ -107,9 +109,9 @@
                 console.log(this.countyArray[index])
                 this.chosenCounty = this.countyArray[index]
             },
-            register(name, password, email) {
-                console.log(name, password, email, this.chosenCounty)
-                console.log('gawad')
+            register(email, password, name) {
+                this.userInfo = {name: name, password: password, email: email, county: this.chosenCounty}
+                console.log(this.userInfo)
             }
         }
     }
