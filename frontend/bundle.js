@@ -194,6 +194,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
+/***/ "./components/Navbar.vue":
+/*!*******************************!*\
+  !*** ./components/Navbar.vue ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navbar.vue?vue&type=template&id=cfc91daa& */ \"./components/Navbar.vue?vue&type=template&id=cfc91daa&\");\n/* harmony import */ var _Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navbar.vue?vue&type=script&lang=js& */ \"./components/Navbar.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"components/Navbar.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./components/Navbar.vue?");
+
+/***/ }),
+
+/***/ "./components/Navbar.vue?vue&type=script&lang=js&":
+/*!********************************************************!*\
+  !*** ./components/Navbar.vue?vue&type=script&lang=js& ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib??vue-loader-options!./Navbar.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./components/Navbar.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./components/Navbar.vue?");
+
+/***/ }),
+
+/***/ "./components/Navbar.vue?vue&type=template&id=cfc91daa&":
+/*!**************************************************************!*\
+  !*** ./components/Navbar.vue?vue&type=template&id=cfc91daa& ***!
+  \**************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./Navbar.vue?vue&type=template&id=cfc91daa& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/Navbar.vue?vue&type=template&id=cfc91daa&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_cfc91daa___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./components/Navbar.vue?");
+
+/***/ }),
+
 /***/ "./index.js":
 /*!******************!*\
   !*** ./index.js ***!
@@ -202,7 +238,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuetify */ \"./node_modules/vuetify/dist/vuetify.js\");\n/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App.vue */ \"./components/App.vue\");\n/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home.vue */ \"./components/Home.vue\");\n/* harmony import */ var _components_About_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/About.vue */ \"./components/About.vue\");\n/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ \"./node_modules/vuetify/dist/vuetify.min.css\");\n/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__);\n\n\n\n\n\n\n// import Navbar from './components/Navbar.vue'\n\n// import 'material-design-icons-iconfont/dist/material-design-icons.css' \n// import '@mdi/font/css/materialdesignicons.css'\n\nvue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__[\"default\"])\nvue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a, {\n    iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'\n  })\n\nconst router = new vue_router__WEBPACK_IMPORTED_MODULE_2__[\"default\"]({\n    routes: [\n        { path: '/', name: 'home', component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"] },\n        { path: '/about', name: 'about', component: _components_About_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"] }  \n    ]\n})\n\nnew vue__WEBPACK_IMPORTED_MODULE_0___default.a({\n    el: '#app',\n    render: h => h(_components_App_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n    router\n})\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuetify */ \"./node_modules/vuetify/dist/vuetify.js\");\n/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App.vue */ \"./components/App.vue\");\n/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home.vue */ \"./components/Home.vue\");\n/* harmony import */ var _components_About_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/About.vue */ \"./components/About.vue\");\n/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ \"./node_modules/vuetify/dist/vuetify.min.css\");\n/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__);\n\n\n\n\n\n\n// import Navbar from './components/Navbar.vue'\n\n// import 'material-design-icons-iconfont/dist/material-design-icons.css' \n// import '@mdi/font/css/materialdesignicons.css'\n\nvue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__[\"default\"])\nvue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a, {\n    iconfont: 'mdi'\n  })\n\nconst router = new vue_router__WEBPACK_IMPORTED_MODULE_2__[\"default\"]({\n    routes: [\n        { path: '/', name: 'home', component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"] },\n        { path: '/about', name: 'about', component: _components_About_vue__WEBPACK_IMPORTED_MODULE_5__[\"default\"] }  \n    ]\n})\n\nnew vue__WEBPACK_IMPORTED_MODULE_0___default.a({\n    el: '#app',\n    render: h => h(_components_App_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n    router\n})\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -282,7 +318,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n\
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n// import Navbar from './components/Navbar.vue'\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    name: 'App',\n    components: { Navbar }\n});\n\n\n//# sourceURL=webpack:///./components/App.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Navbar.vue */ \"./components/Navbar.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: 'App',\n  components: { Navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"] },\n  data () {\n    return {\n      //\n    }\n  }\n});\n\n\n//# sourceURL=webpack:///./components/App.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -295,6 +331,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n/
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    name: 'home',\n    data() {\n        return {\n            msg: 'Welcome to home page!'\n        }\n    }\n});\n\n\n//# sourceURL=webpack:///./components/Home.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./components/Navbar.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./components/Navbar.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data() {\n    return {\n\n    };\n  }\n});\n\n\n//# sourceURL=webpack:///./components/Navbar.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -318,7 +366,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { attrs: { id: \"app\" } },\n    [_c(\"h1\", [_vm._v(\"hello\")]), _vm._v(\" \"), _c(\"router-view\")],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"v-app\",\n    [_c(\"Navbar\"), _vm._v(\" \"), _c(\"v-content\", [_c(\"router-view\")], 1)],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -331,6 +379,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"home\" },\n    [\n      _c(\"v-btn\", { attrs: { fab: \"\", small: \"\" } }, [_vm._v(\"Home\")]),\n      _vm._v(\" \"),\n      _c(\n        \"p\",\n        [_c(\"router-link\", { attrs: { to: \"/about\" } }, [_vm._v(\"About\")])],\n        1\n      ),\n      _vm._v(\" \"),\n      _c(\"v-icon\", { attrs: { large: \"\", color: \"green darken-2\" } }, [\n        _vm._v(\"business\")\n      ])\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/Home.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/Navbar.vue?vue&type=template&id=cfc91daa&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/Navbar.vue?vue&type=template&id=cfc91daa& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"nav\",\n    [\n      _c(\n        \"v-toolbar\",\n        { attrs: { app: \"\" } },\n        [\n          _c(\n            \"router-link\",\n            { attrs: { to: \"/\" } },\n            [\n              _c(\n                \"v-toolbar-title\",\n                { staticClass: \"text-uppercase grey--text\" },\n                [\n                  _c(\"span\", { staticClass: \"font-weight-light\" }, [\n                    _vm._v(\"Breedly\")\n                  ])\n                ]\n              )\n            ],\n            1\n          ),\n          _vm._v(\" \"),\n          _c(\"v-spacer\"),\n          _vm._v(\" \"),\n          _c(\n            \"v-btn\",\n            {\n              staticClass: \"uppercase black--text\",\n              attrs: { route: \"\", to: \"/signin\" }\n            },\n            [_c(\"span\", [_vm._v(\"Logga in\")])]\n          )\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./components/Navbar.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
