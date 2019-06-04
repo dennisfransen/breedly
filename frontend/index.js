@@ -4,10 +4,7 @@ import Router from 'vue-router'
 import App from './components/App.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
-// import Navbar from './components/Navbar.vue'
 import 'vuetify/dist/vuetify.min.css'
-// import 'material-design-icons-iconfont/dist/material-design-icons.css' 
-// import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Router)
 Vue.use(Vuetify, {
