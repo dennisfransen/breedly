@@ -29,7 +29,7 @@
       </v-layout>
   
       <v-btn flat @click="login = !login">Login</v-btn>
-      <v-btn flat>Register</v-btn>
+      <v-btn flat route to="/register">Register</v-btn>
     </v-toolbar>
 
   </nav>
