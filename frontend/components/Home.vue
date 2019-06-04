@@ -2,6 +2,7 @@
     <div class="home">
         <v-btn fab small>Home</v-btn>
         <p><router-link to="/about">About</router-link></p>
+        <p><router-link to="/register">Register</router-link></p>
         <v-icon large color="green darken-2">business</v-icon>
     </div>
 </template>
