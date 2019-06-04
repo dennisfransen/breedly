@@ -42,7 +42,7 @@
         <v-btn
           v-on="on"
         >
-          County
+          {{ chosenCounty }}
         </v-btn>
       </template>
       <v-list         
@@ -52,13 +52,13 @@
           v-for="(county, index) in countyArray"
           :key="index"
           v-scroll="callback"
-          @click="chosenCounty(index)"
+          @click="chooseCounty(index)"
         >
           <v-list-tile-title>{{ county }}</v-list-tile-title>
         </v-list-tile>
       </v-list>
     </v-menu>
-          <v-btn v-on="register">
+          <v-btn @click="register(email, password, name)">
               Register
             </v-btn>
                 </v-card>
@@ -97,13 +97,19 @@
                 'Västmanland', 
                 'Västra Götaland', 
                 'Örebro',
-                'Östergötland']
+                'Östergötland'],
+                chosenCounty: 'County'
 
             }
         },
         methods: {
-            chosenCounty(index) {
+            chooseCounty(index) {
                 console.log(this.countyArray[index])
+                this.chosenCounty = this.countyArray[index]
+            },
+            register(name, password, email) {
+                console.log(name, password, email, this.chosenCounty)
+                console.log('gawad')
             }
         }
     }
