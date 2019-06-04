@@ -17,6 +17,7 @@
                 <v-btn  big color="primary" to="/signup">GET STARTED</v-btn>
             </v-flex>
         </v-layout>
+
     </div>
 </template>
 

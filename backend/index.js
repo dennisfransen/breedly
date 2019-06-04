@@ -6,7 +6,7 @@ const app = express()
 app.use(express.static(path.join(path.resolve(), 'public')))
 
 let database
-sqlite.open('test.sqlite').then(database_ => {
+sqlite.open('database.sqlite').then(database_ => {
     database = database_
 })
 
