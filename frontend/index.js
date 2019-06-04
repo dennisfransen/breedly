@@ -8,16 +8,14 @@ import Register from './components/Register.vue'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Router)
-Vue.use(Vuetify, {
-    iconfont: 'mdi'
-  })
-}
+Vue.use(Vuetify, { iconfont: 'mdi' })
+
 
 const router = new Router({
     routes: [
         { path: '/', name: 'home', component: Home },
         { path: '/about', name: 'about', component: About },
-        { path: '/register', name: 'register', component: Register}  
+        { path: '/register', name: 'register', component: Register}
     ]
 })
 
