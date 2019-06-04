@@ -6,7 +6,7 @@ import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Register from './components/Register.vue'
 import 'vuetify/dist/vuetify.min.css'
-π
+
 Vue.use(Router)
 Vue.use(Vuetify, { iconfont: 'mdi' })
 

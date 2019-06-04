@@ -17,7 +17,7 @@
       <v-spacer></v-spacer>
   
       <v-layout row wrap class="marginLogin">
-        <v-card v-if="login" class="test">
+        <v-card v-if="login" class="cardWidth">
           <v-card-title>
             <input type="text" placeholder="Email">
             <input type="text" placeholder="Password">
@@ -29,32 +29,9 @@
       </v-layout>
   
       <v-btn flat @click="login = !login">Login</v-btn>
-<<<<<<< HEAD
       <v-btn flat>Register</v-btn>
     </v-toolbar>
-  
-  
-=======
-      <router-link to="/register">
-        <v-btn flat>Register</v-btn>
-      </router-link>
 
-    </v-toolbar>
-
-    <v-layout row wrap right class="marginLogin">
-      <v-card v-if="login">
-        <v-card-title>
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Password">
-        </v-card-title>
-        <v-card-actions>
-          <v-btn>Login</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-layout>
-    
-
->>>>>>> cd33ba83dcf515cceb5e2ba6ebd8ae3ca4fbdb0b
   </nav>
 </template>
 
@@ -97,14 +74,11 @@
   }
   
   .marginLogin {
-<<<<<<< HEAD
     margin-top: 12em;
     margin-left: 23.3em;
   }
-  .test {
+  .cardWidth {
     min-width: 20em;
-=======
-    margin-top: 70px;
->>>>>>> cd33ba83dcf515cceb5e2ba6ebd8ae3ca4fbdb0b
   }
 </style>
+  
