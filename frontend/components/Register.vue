@@ -5,7 +5,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
         </v-card-actions>
-        <v-container v-bind="{ [`grid-list-${size}`]: true }" fluid>
+        <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
           <v-layout row wrap>
             <v-flex
               v-for="n in 1"
@@ -15,7 +15,6 @@
             <v-card flat tile>
                 <v-text-field
                     v-model="email"
-                    :rules="emailRules"
                     label="E-mail"
                     required
                 ></v-text-field>
@@ -23,7 +22,6 @@
             <v-card flat tile>
                 <v-text-field
                     v-model="password"
-                    :rules="password"
                     label="Password"
                     :type="'password'"
                     required
