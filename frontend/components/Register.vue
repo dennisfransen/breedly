@@ -2,47 +2,26 @@
   <v-layout mt-1>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-        </v-card-actions>
         <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
-          <v-layout row wrap>
-            <v-flex v-for="n in 1" :key="n" xs4>
+          <v-layout justify-center>
+            <v-flex v-for="n in 1" :key="n" xs4 text-xs-center>
               <v-card flat tile>
                 <v-text-field v-model="email" label="E-mail" required></v-text-field>
-              </v-card>
-              <v-card flat tile>
                 <v-text-field v-model="password" label="Password" :type="'password'" required></v-text-field>
-              </v-card>
-              <v-card flat tile>
                 <v-text-field v-model="name" label="Full name" required></v-text-field>
-              </v-card>
-              <v-card flat tile>
                 <v-text-field v-model="number" label="Phone number" required></v-text-field>
-              </v-card>
-              <v-card flat tile>
                 <v-menu offset-x>
                   <template v-slot:activator="{ on }">
                     <v-btn v-on="on" flat> {{ location }}</v-btn>
-</template>
-      <v-list         
-      style="max-height: 300px"
-       class="scroll-y">
-        <v-list-tile
-          v-for="(county, index) in countyArray"
-          :key="index"
-          @click="chooseCounty(index)"
-        >
-          <v-list-tile-title>{{ county }}</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-menu>
-    </v-card>
-    <v-card flat>
-          <v-btn @click="next(email, password, name, number)" flat>
-              Next
-            </v-btn>
-                </v-card>
+                  </template>
+                  <v-list style="max-height: 300px" class="scroll-y">
+                    <v-list-tile v-for="(county, index) in countyArray" :key="index" click="chooseCounty(index)">
+                      <v-list-tile-title>{{ county }}</v-list-tile-title>
+                    </v-list-tile>
+                    </v-list>
+                </v-menu>
+                <v-btn @click="next(email, password, name, number)" flat> Next </v-btn>
+              </v-card>
             </v-flex>
           </v-layout>
         </v-container>
