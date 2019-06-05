@@ -5,22 +5,28 @@
         <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
           <v-layout justify-center>
             <v-flex v-for="n in 1" :key="n" xs4 text-xs-center>
+              <!-- card for user registration info -->
               <v-card flat tile>
+                
                 <v-text-field v-model="email" label="E-mail" required></v-text-field>
                 <v-text-field v-model="password" label="Password" :type="'password'" required></v-text-field>
                 <v-text-field v-model="name" label="Full name" required></v-text-field>
                 <v-text-field v-model="number" label="Phone number" required></v-text-field>
+                
+                <!-- scroll list for location -->
                 <v-menu offset-x>
                   <template v-slot:activator="{ on }">
                     <v-btn v-on="on" flat> {{ location }}</v-btn>
                   </template>
                   <v-list style="max-height: 300px" class="scroll-y">
-                    <v-list-tile v-for="(county, index) in countyArray" :key="index" click="chooseCounty(index)">
+                    <v-list-tile v-for="(county, index) in countyArray" :key="index" @click="chooseCounty(index)">
                       <v-list-tile-title>{{ county }}</v-list-tile-title>
                     </v-list-tile>
                     </v-list>
                 </v-menu>
+
                 <v-btn @click="next(email, password, name, number)" flat> Next </v-btn>
+              
               </v-card>
             </v-flex>
           </v-layout>
@@ -36,7 +42,8 @@
     name: 'register',
     data() {
       return {
-        countyArray: ['Blekinge',
+        countyArray: 
+        ['Blekinge',
           'Dalarna',
           'Gotland',
           'Gävleborg',
@@ -77,14 +84,15 @@
           password: password,
           email: email,
           number: number,
-          county: this.location
+          location: this.location
         }
         console.log(this.userInfo)
         this.saveUser(this.userInfo)
       },
       saveUser(userInfo) {
         fetch('http://localhost:8080/register', {
-                body: '{ "name": "' + this.name + '", "password": ' + this.password + ', "email": ' + this.email + ', "location": ' + this.location + ', "number": ' + this.number + '}',
+                body: '{ ' + userInfo + '}',
+                // body: '{ "name": "' + this.name + '", "password": ' + this.password + ', "email": ' + this.email + ', "location": ' + this.location + ', "number": ' + this.number + '}',
                 headers: {
                 'Content-Type': 'application/json'
                 },
