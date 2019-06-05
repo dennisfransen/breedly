@@ -1,5 +1,5 @@
 <template>
-  <v-layout mt-5>
+  <v-layout mt-1>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-card-actions>
@@ -7,42 +7,24 @@
         </v-card-actions>
         <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
           <v-layout row wrap>
-            <v-flex
-              v-for="n in 1"
-              :key="n"
-              xs4
-            >
-            <v-card flat tile>
-                <v-text-field
-                    v-model="email"
-                    label="E-mail"
-                    required
-                ></v-text-field>
-            </v-card>
-            <v-card flat tile>
-                <v-text-field
-                    v-model="password"
-                    label="Password"
-                    :type="'password'"
-                    required
-                ></v-text-field>
-            </v-card>
-                <v-card flat tile>
-                    <v-text-field
-                    v-model="name"
-                    label="Full name"
-                    required
-                    ></v-text-field>
-                </v-card >
-                <v-card flat tile>
-                        <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-        <v-btn
-          v-on="on"
-        >
-          {{ chosenCounty }}
-        </v-btn>
-      </template>
+            <v-flex v-for="n in 1" :key="n" xs4>
+              <v-card flat tile>
+                <v-text-field v-model="email" label="E-mail" required></v-text-field>
+              </v-card>
+              <v-card flat tile>
+                <v-text-field v-model="password" label="Password" :type="'password'" required></v-text-field>
+              </v-card>
+              <v-card flat tile>
+                <v-text-field v-model="name" label="Full name" required></v-text-field>
+              </v-card>
+              <v-card flat tile>
+                <v-text-field v-model="number" label="Phone number" required></v-text-field>
+              </v-card>
+              <v-card flat tile>
+                <v-menu offset-x>
+                  <template v-slot:activator="{ on }">
+                    <v-btn v-on="on" flat> {{ location }}</v-btn>
+</template>
       <v-list         
       style="max-height: 300px"
        class="scroll-y">
@@ -55,8 +37,10 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-          <v-btn @click="register(email, password, name)">
-              Register
+    </v-card>
+    <v-card flat>
+          <v-btn @click="next(email, password, name, number)" flat>
+              Next
             </v-btn>
                 </v-card>
             </v-flex>
@@ -69,48 +53,68 @@
 
 
 <script>
-    export default {
-        name: 'register',
-        data() {
-            return {
-                countyArray :
-                ['Blekinge', 
-                'Dalarna', 
-                'Gotland', 
-                'Gävleborg', 
-                'Halland', 
-                'Jämtland', 
-                'Jönköping', 
-                'Kalmar', 
-                'Kronoberg', 
-                'Norrbotten', 
-                'Skåne', 
-                'Stockholm', 
-                'Södermanland', 
-                'Uppsala', 
-                'Värmland', 
-                'Västerbotten', 
-                'Västernorrland', 
-                'Västmanland', 
-                'Västra Götaland', 
-                'Örebro',
-                'Östergötland'],
-                email: null,
-                name: null,
-                password: null,
-                chosenCounty: 'County',
-                userInfo: null
-            }
-        },
-        methods: {
-            chooseCounty(index) {
-                console.log(this.countyArray[index])
-                this.chosenCounty = this.countyArray[index]
-            },
-            register(email, password, name) {
-                this.userInfo = {name: name, password: password, email: email, county: this.chosenCounty}
-                console.log(this.userInfo)
-            }
+  export default {
+    name: 'register',
+    data() {
+      return {
+        countyArray: ['Blekinge',
+          'Dalarna',
+          'Gotland',
+          'Gävleborg',
+          'Halland',
+          'Jämtland',
+          'Jönköping',
+          'Kalmar',
+          'Kronoberg',
+          'Norrbotten',
+          'Skåne',
+          'Stockholm',
+          'Södermanland',
+          'Uppsala',
+          'Värmland',
+          'Västerbotten',
+          'Västernorrland',
+          'Västmanland',
+          'Västra Götaland',
+          'Örebro',
+          'Östergötland'
+        ],
+        name: null,
+        password: null,
+        email: null,
+        number: null,
+        location: 'County',
+        userInfo: null
+      }
+    },
+    methods: {
+      chooseCounty(index) {
+        console.log(this.countyArray[index])
+        this.location = this.countyArray[index]
+      },
+      next(email, password, name, number) {
+        this.userInfo = {
+          name: name,
+          password: password,
+          email: email,
+          number: number,
+          county: this.location
         }
+        console.log(this.userInfo)
+        this.saveUser(this.userInfo)
+      },
+      saveUser(userInfo) {
+        fetch('http://localhost:8080/register', {
+                body: '{ "name": "' + this.name + '", "password": ' + this.password + ', "email": ' + this.email + ', "location": ' + this.location + ', "number": ' + this.number + '}',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                method: 'POST'
+            })
+            .then(result => {
+                console.log('saved user', result)
+            })
+      }
     }
+  }
 </script>
