@@ -70,33 +70,16 @@
   export default {
     data() {
       return {
-        links: [{
-            path: '/about',
-            name: 'About us'
-          },
-          {
-            path: '/info',
-            name: 'How does Breedly work?'
-          },
-          {
-            path: '/contact',
-            name: 'Contact us'
-          },
-          {
-            path: '/register',
-            name: 'Register account'
-  
-          }
+        links: [
+          { path: '/about', name: 'About us'},
+          { path: '/info', name: 'How does Breedly work?'},
+          { path: '/contact', name: 'Contact us'},
+          { path: '/register', name: 'Register account'}
         ],
-        loginBox: [{
-            text: 'Email',
-            type: 'text'
-          },
-          {
-          text: 'Password',
-          type: 'password'
-  
-        }],
+        loginBox: [
+          { text: 'Email', type: 'text'},
+          { text: 'Password', type: 'password'}
+        ],
       login: false
     }
   },
@@ -104,7 +87,7 @@
     loginBtnPressed() {
       alert('You pressed login button')
     }
-  },
+  }
 }
 </script>
 
