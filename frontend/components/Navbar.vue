@@ -104,7 +104,6 @@
     loginBtnPressed() {
       alert('You pressed login button')
     }
-
   },
 }
 </script>
