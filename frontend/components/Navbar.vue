@@ -91,7 +91,7 @@
 }
 </script>
 
-<style>
+<style scoped>
   a {
     text-decoration: none;
     text-transform: uppercase;
