@@ -2,31 +2,51 @@
   <nav>
     <v-toolbar app>
       <!-- Logo with link to rot -->
-      <router-link class="mr-3 underline" to="/">
-        <v-toolbar-title class="text-uppercase display-1 grey--text">
-          <span class="font-weight-bold">Breedly</span>
-        </v-toolbar-title>
-      </router-link>
+        <router-link class="underline" to="/">
+          <v-toolbar-title class="text-uppercase display-1 grey--text">
+            <span class="font-weight-bold">Breedly</span>
+          </v-toolbar-title>
+        </router-link>
   
-      <!-- for-loop for about, info, register and contact with link to each path -->
+      <!-- for-loop for about, info, register, login and contact with link to each path -->
       <router-link class="mr-3" v-for="link in links" :key="link.name" :to="link.path">
         <v-toolbar-items class="hidden-sm-and-down">
+          
           <v-toolbar-title class="grey--text">
             <v-btn flat class="font-weight-light navItem">{{link.name}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
       </router-link>
-  
+
       <v-spacer></v-spacer>
+
+      <router-link class="mr-3" v-for="link in linksLogin" :key="link.name" :to="link.path">
+        <v-toolbar-items class="hidden-sm-and-down">
+          
+          <v-toolbar-title class="grey--text">
+            <v-btn flat class="font-weight-light navItem">{{link.name}}</v-btn>
+          </v-toolbar-title>
+        </v-toolbar-items>
+      </router-link>
+
+
+
+
+      
+
+
+
+
+
+
   
-      <!-- buttons with link to register and boolean for login popup -->
-      <v-toolbar-items class="hidden-xs-and-down">
+      <!-- static popup menu for login button-->
+      <!-- <v-toolbar-items>
         <v-menu :close-on-content-click="false">
           <template v-slot:activator="{ on }">
-                <v-btn flat v-on="on" class="font-weight-light" >Login</v-btn>
+                <v-btn flat v-on="on" class="font-weight-light navItem" >Login</v-btn>
           </template>
           <v-list>
-            <!-- popup menu for login -->
             <v-list-tile v-for="text in loginBox" :key="text.text"> 
               <v-list-tile-title class="border">
                 <input :placeholder="text.text" :type="text.type">
@@ -43,7 +63,7 @@
         </v-menu>
 
         
-      </v-toolbar-items>
+      </v-toolbar-items> -->
         
       <!-- burger menu for smaller devices -->
       <v-toolbar-items class="hidden-md-and-up">
@@ -54,11 +74,11 @@
             </v-btn>
           </template>
         <v-list>
-          <v-list-tile v-for="link in links" :key="link.path" route :to="link.path">
+          <v-list-tile v-for="link in linksAll" :key="link.path" route :to="link.path">
             <v-list-tile-title>{{ link.name }}</v-list-tile-title>
           </v-list-tile>
         </v-list>
-      </v-menu>
+        </v-menu>
       </v-toolbar-items>
       
     </v-toolbar>
@@ -74,18 +94,18 @@
           { path: '/about', name: 'About us'},
           { path: '/info', name: 'How does Breedly work?'},
           { path: '/contact', name: 'Contact us'},
-          { path: '/register', name: 'Register account'}
         ],
-        loginBox: [
-          { text: 'Email', type: 'text'},
-          { text: 'Password', type: 'password'}
+        linksLogin: [
+          { path: '/register', name: 'Register account'},
+          { path: '/login', name: 'Login'}
         ],
-      login: false
-    }
-  },
-  methods: {
-    loginBtnPressed() {
-      alert('You pressed login button')
+        linksAll: [
+          { path: '/about', name: 'About us'},
+          { path: '/info', name: 'How does Breedly work?'},
+          { path: '/contact', name: 'Contact us'},
+          { path: '/register', name: 'Register account'},
+          { path: '/login', name: 'Login'}
+        ],
     }
   }
 }
