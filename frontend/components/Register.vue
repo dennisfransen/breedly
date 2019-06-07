@@ -1,47 +1,62 @@
 <template>
   <div class="register">
   
-
-        
-    <v-layout mt-5>
+    <v-layout>
       <v-flex xs12 sm6 offset-sm3>
-
-          <v-card color="rgba(0, 0, 0, 0.2">
-
-
-            <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
-              <v-layout justify-center>
-                <v-flex v-for="n in 1" :key="n" xs4 text-xs-center>
-
-                  <!-- card for user registration info -->
-                  <v-card color="rgba(0, 0, 0, 0.0" flat tile>
-                        
-                        <v-text-field v-model="email" label="E-mail" required></v-text-field>
-                        <v-text-field v-model="password" label="Password" :type="'password'" required></v-text-field>
-                        <v-text-field v-model="name" label="Full name" required></v-text-field>
-                        <v-text-field v-model="number" label="Phone number" required></v-text-field>
-                        
-                        <!-- scroll list for location -->
-                        <v-menu offset-x> 
-                        <template v-slot:activator="{ on }">
-                          <v-btn v-on="on" flat> {{ location }}</v-btn>
-                        </template>
+  
+        <v-card class="mt-5" color="rgba(0, 0, 0, 0.2">
+  
+          <v-container v-bind="{ [`grid-list-${0}`]: true }" fluid>
+            <v-layout justify-center>
+              <v-flex v-for="n in 1" :key="n" xs4 text-xs-center>
+  
+                <!-- card for user registration info -->
+                <v-card v-if="!nextInfo" color="rgba(0, 0, 0, 0.0" flat tile>
+  
+                  <v-text-field dark v-model="email" label="E-mail" required></v-text-field>
+                  <v-text-field dark v-model="password" label="Password" :type="'password'" required></v-text-field>
+                  <v-text-field dark v-model="name" label="Full name" required></v-text-field>
+                  <v-text-field dark v-model="number" label="Phone number" required></v-text-field>
+  
+                  <!-- scroll list for location -->
+                  <v-menu offset-x>
+                    <template v-slot:activator="{ on }">
+                      <v-btn  v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
+                    </template>
                   <v-list style="max-height: 300px" class="scroll-y">
                     <v-list-tile v-for="(county, index) in countyArray" :key="index" @click="chooseCounty(index)">
                       <v-list-tile-title>{{ county }}</v-list-tile-title>
                     </v-list-tile>
-                    </v-list>
-                </v-menu>
+                  </v-list>
+                  </v-menu>
 
-                <v-btn @click="register(email, password, name)">Register<v-icon color="green" right="" >check_circle</v-icon></v-btn>
+                  <v-btn  @click="next(email, password, name)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
               
               </v-card>
+             
+              <!-- Pet information form -->
+              <v-card v-if="nextInfo" color="rgba(0, 0, 0, 0.0" flat tile>
+
+                <v-text-field dark v-model="petType" label="Pet type" required></v-text-field>
+                <v-text-field dark v-model="petName" label="Pet name" required></v-text-field>
+                <v-text-field dark v-model="petAge" label="Pet age" required></v-text-field>
+                
+                <v-textarea dark v-model="petDescription" label="Describe your pet">Description</v-textarea>
+
+                <v-switch dark v-model="pedigree" label="Pedigree"></v-switch>
+                
+                <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
+                <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
+                
+                <v-btn @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
+                <v-btn @click="registerPet(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
+
+              </v-card>
+            
             </v-flex>
           </v-layout>
         </v-container>
       </v-card>
-
-
     </v-flex>
   </v-layout>
 
@@ -82,7 +97,17 @@
         chosenCounty: 'County',
         number: null,
         location: 'County',
-        userInfo: null
+        userInfo: null,
+        nextInfo: false,
+        petName: null,
+        petType: null,
+        petAge: null,
+        petDescription: null,
+        pedigree: null,
+        gender: null,
+        petMale: null,
+        petFemale: null,
+        petInfo: null,
       }
     },
     methods: {
@@ -93,16 +118,41 @@
       register(email, password, name) {
         this.location = this.countyArray[index]
       },
+      // Get user information and save to user object
       next(email, password, name, number) {
         this.userInfo = {
-            name: name,
-            password: password,
-            email: email,
-            county: this.chosenCounty
-          },
-  
-          console.log(this.userInfo)
+          name: name,
+          password: password,
+          email: email,
+          number: number,
+          location: this.location
+        }
+        this.nextInfo = true
+        this.saveUser(this.userInfo)
       },
+      back() {
+        this.nextInfo = false
+      },
+      registerPet(type, name, age, description, pedigree) {
+        this.petInfo = {
+          type: type,
+          name: name,
+          age: age,
+          description: description,
+          pedigree: pedigree
+        }
+        console.log(this.petInfo)
+      },
+      petGender(gender) {
+        if(gender) {
+          this.petMale = false
+          this.petFemale = true
+        } else if(!gender) {
+          this.petMale = true
+          this.petFemale = false
+        }
+      },
+      // Save user to database
       saveUser(userInfo) {
         fetch('http://localhost:8080/register', {
             body: '{ ' + userInfo + '}',
