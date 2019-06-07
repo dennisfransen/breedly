@@ -2,76 +2,40 @@
   <nav>
     <v-toolbar app>
       <!-- Logo with link to rot -->
-        <router-link class="underline" to="/">
-          <v-toolbar-title class="text-uppercase display-1 grey--text">
-            <span class="font-weight-bold">Breedly</span>
-          </v-toolbar-title>
-        </router-link>
+      <router-link class="underline" to="/">
+        <v-toolbar-title class="text-uppercase display-1 grey--text">
+          <span class="font-weight-bold">Breedly</span>
+        </v-toolbar-title>
+      </router-link>
   
-      <!-- for-loop for about, info, register, login and contact with link to each path -->
+      <!-- for-loop for about, info and contact with link to each path -->
       <router-link class="mr-3" v-for="link in links" :key="link.name" :to="link.path">
         <v-toolbar-items class="hidden-sm-and-down">
-          
           <v-toolbar-title class="grey--text">
             <v-btn flat class="font-weight-light navItem">{{link.name}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
       </router-link>
-
+  
       <v-spacer></v-spacer>
-
+  
+      <!-- for-loop for register and login with link to each path -->
       <router-link class="mr-3" v-for="link in linksLogin" :key="link.name" :to="link.path">
         <v-toolbar-items class="hidden-sm-and-down">
-          
+  
           <v-toolbar-title class="grey--text">
             <v-btn flat class="font-weight-light navItem">{{link.name}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
       </router-link>
-
-
-
-
-      
-
-
-
-
-
-
   
-      <!-- static popup menu for login button-->
-      <!-- <v-toolbar-items>
-        <v-menu :close-on-content-click="false">
-          <template v-slot:activator="{ on }">
-                <v-btn flat v-on="on" class="font-weight-light navItem" >Login</v-btn>
-          </template>
-          <v-list>
-            <v-list-tile v-for="text in loginBox" :key="text.text"> 
-              <v-list-tile-title class="border">
-                <input :placeholder="text.text" :type="text.type">
-              </v-list-tile-title>
-            </v-list-tile>
-
-            <v-list-tile>
-              <v-list-tile-action>
-                <v-btn @click="loginBtnPressed">Login</v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-
-          </v-list>
-        </v-menu>
-
-        
-      </v-toolbar-items> -->
-        
       <!-- burger menu for smaller devices -->
       <v-toolbar-items class="hidden-md-and-up">
         <v-menu>
           <template v-slot:activator="{ on }">
-            <v-btn flat v-on="on">
-              <v-icon>list</v-icon>
-            </v-btn>
+              <v-btn flat v-on="on">
+                <v-icon>list</v-icon>
+              </v-btn>
           </template>
         <v-list>
           <v-list-tile v-for="link in linksAll" :key="link.path" route :to="link.path">
@@ -90,25 +54,52 @@
   export default {
     data() {
       return {
-        links: [
-          { path: '/about', name: 'About us'},
-          { path: '/info', name: 'How does Breedly work?'},
-          { path: '/contact', name: 'Contact us'},
+        links: [{
+            path: '/about',
+            name: 'About us'
+          },
+          {
+            path: '/info',
+            name: 'How does Breedly work?'
+          },
+          {
+            path: '/contact',
+            name: 'Contact us'
+          },
         ],
-        linksLogin: [
-          { path: '/register', name: 'Register account'},
-          { path: '/login', name: 'Login'}
+        linksLogin: [{
+            path: '/register',
+            name: 'Register account'
+          },
+          {
+            path: '/login',
+            name: 'Login'
+          }
         ],
-        linksAll: [
-          { path: '/about', name: 'About us'},
-          { path: '/info', name: 'How does Breedly work?'},
-          { path: '/contact', name: 'Contact us'},
-          { path: '/register', name: 'Register account'},
-          { path: '/login', name: 'Login'}
+        linksAll: [{
+            path: '/about',
+            name: 'About us'
+          },
+          {
+            path: '/info',
+            name: 'How does Breedly work?'
+          },
+          {
+            path: '/contact',
+            name: 'Contact us'
+          },
+          {
+            path: '/register',
+            name: 'Register account'
+          },
+          {
+            path: '/login',
+            name: 'Login'
+          }
         ],
+      }
     }
   }
-}
 </script>
 
 <style scoped>
