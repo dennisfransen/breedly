@@ -6,6 +6,7 @@ import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Register from './components/Register.vue'
 import Search from './components/Search.vue'
+import Login from './components/Login.vue'
 // import '@mdi/font/css/materialdesignicons.css'
 // import 'vuetify/dist/vuetify.min.css'
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -26,7 +27,8 @@ const router = new Router({
         { path: '/', name: 'home', component: Home },
         { path: '/about', name: 'about', component: About },
         { path: '/register', name: 'register', component: Register},
-        { path: '/search', name: 'search', component: Search}
+        { path: '/search', name: 'search', component: Search},
+        { path: '/login', name: 'login', component: Login}
     ]
 })
 
