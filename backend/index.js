@@ -30,6 +30,20 @@ app.get('/pets', (request, response) => {
   })
 })
 
+app.get('/users/:userEmail/:userPassword', (request, response) => {
+  database.all('SELECT * FROM user').then(users => {
+    users.forEach(user => {
+      if (request.params.userEmail === user.email && request.params.userPassword === user.password) {
+        console.log('You are logged in');
+
+      } else {
+        console.log('You do not have account')
+      }
+    })
+  })
+  response.send()
+})
+
 app.listen(3000)
 
 
