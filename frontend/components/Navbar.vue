@@ -8,7 +8,7 @@
         </v-toolbar-title>
       </router-link>
   
-      <!-- for loop for about, info and contact with link to each path -->
+      <!-- for-loop for about, info, register and contact with link to each path -->
       <router-link class="mr-3" v-for="link in links" :key="link.name" :to="link.path">
         <v-toolbar-items class="hidden-sm-and-down">
           <v-toolbar-title class="grey--text">
@@ -17,34 +17,42 @@
         </v-toolbar-items>
       </router-link>
   
-  
       <v-spacer></v-spacer>
   
-  
-      <v-card v-if="login" class="cardWidth marginLogin">
-        <v-card-title>
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Password">
-        </v-card-title>
-        <v-card-actions>
-          <v-btn small>Login</v-btn>
-        </v-card-actions>
-      </v-card>
-  
       <!-- buttons with link to register and boolean for login popup -->
-      <v-toolbar-items>
-        <v-btn flat class="font-weight-light navItem" @click="login = !login">Login</v-btn>
-        <v-btn flat class="font-weight-light navItem" route to="/register">Register</v-btn>
-      </v-toolbar-items>
+      <v-toolbar-items class="hidden-xs-and-down">
+        <v-menu :close-on-content-click="false">
+          <template v-slot:activator="{ on }">
+                <v-btn flat v-on="on" class="font-weight-light" >Login</v-btn>
+          </template>
+          <v-list>
+            <!-- popup menu for login -->
+            <v-list-tile v-for="text in loginBox" :key="text.text"> 
+              <v-list-tile-title class="border">
+                <input :placeholder="text.text" :type="text.type">
+              </v-list-tile-title>
+            </v-list-tile>
 
+            <v-list-tile>
+              <v-list-tile-action>
+                <v-btn @click="loginBtnPressed">Login</v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+
+          </v-list>
+        </v-menu>
+
+        
+      </v-toolbar-items>
+        
       <!-- burger menu for smaller devices -->
       <v-toolbar-items class="hidden-md-and-up">
         <v-menu>
-        <template v-slot:activator="{ on }">
+          <template v-slot:activator="{ on }">
             <v-btn flat v-on="on">
               <v-icon>list</v-icon>
             </v-btn>
-        </template>
+          </template>
         <v-list>
           <v-list-tile v-for="link in links" :key="link.path" route :to="link.path">
             <v-list-tile-title>{{ link.name }}</v-list-tile-title>
@@ -53,7 +61,6 @@
       </v-menu>
       </v-toolbar-items>
       
-  
     </v-toolbar>
   
   </nav>
@@ -63,29 +70,35 @@
   export default {
     data() {
       return {
-        links: [{
-            path: '/about',
-            name: 'About us'
-          },
-          {
-            path: '/info',
-            name: 'How does Breedly work?'
-          },
-          {
-            path: '/contact',
-            name: 'Contact us'
-          },
+        links: [
+          { path: '/about', name: 'About us'},
+          { path: '/info', name: 'How does Breedly work?'},
+          { path: '/contact', name: 'Contact us'},
+          { path: '/register', name: 'Register account'}
         ],
-        login: false
-      }
+        loginBox: [
+          { text: 'Email', type: 'text'},
+          { text: 'Password', type: 'password'}
+        ],
+      login: false
+    }
+  },
+  methods: {
+    loginBtnPressed() {
+      alert('You pressed login button')
     }
   }
+}
 </script>
 
-<style>
+<style scoped>
   a {
     text-decoration: none;
     text-transform: uppercase;
+  }
+  
+  .centerBtn {
+    text-align: center;
   }
   
   a:hover,
@@ -94,7 +107,11 @@
   }
   
   .underline {
-    border-bottom: 2px solid blue;
+    border-bottom: 1px solid green;
+  }
+  
+  .border {
+    border-bottom: 1px solid lightgrey;
   }
   
   .marginLogin {
