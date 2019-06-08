@@ -20,12 +20,7 @@
 </template>
 
 <script>
-import Search from './Search.vue'
-
 export default {
-  components: {
-    Search
-  },
   data() {
     return {
       email: null,
