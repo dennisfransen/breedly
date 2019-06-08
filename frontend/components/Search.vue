@@ -89,3 +89,12 @@
         }
     }
 </script>
+
+<style scoped>
+     .search {
+         background-image: url("../assets/grass-two.png");
+         background-repeat: no-repeat;
+         background-size: auto 40em;
+         background-position: bottom; 
+     } 
+</style>
