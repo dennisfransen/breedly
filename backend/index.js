@@ -1,42 +1,36 @@
-import sqlite from 'sqlite'
-import express from 'express'
-import path from 'path'
-import uuid from 'uuid/v4'
-import bodyParser from 'body-parser'
-
-console.log('gawad')
+const express = require('express')
+const sqlite = require('sqlite')
+const bodyParser = require('body-parser')
+const uuidv4 = require('uuid/v4');
 
 const app = express()
-app.use(bodyParser.json())
-// // app.use(express.static(path.join(path.resolve(), '../frontend/components')))
-
-app.listen(3000)
-
-
 let database
 
+app.use(bodyParser.json())
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
 sqlite.open('db.sqlite').then(database_ => {
-    database = database_
-    console.log('gawad', database)
+  database = database_
 })
 
-console.log(database)
+console.log('Database connection up and running')
 
-app.get('/', (request, response) => {
-    database.all('SELECT * FROM user').then(response => {
-      response.send('gawad get funkar')
+app.get('/pets', (request, response) => {
+  database.all('SELECT * FROM pet').then(pets => {
+    response.send(pets)
+    console.log('All animals in db are: ');
+    console.log(pets);
 
-    })
   })
+})
 
-// app.post('/register/', (req, res) => {
-//     database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?)', 
-//                 [req.body.name, req.body.password, req.body.email, req.body.location, req.body.number, uuid()])
-//     res.send('inserted user into database')
-//     console.log('gawad')
-
-// })
-
+app.listen(3000)
 
 
 
