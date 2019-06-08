@@ -36,8 +36,8 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
       if (request.params.userEmail === user.email && request.params.userPassword === user.password) {
         console.log('user and password exsists in DB');
         response.send()
-      } else if(request.params.userEmail === user.email || request.params.userPassword === user.password) {
-        console.log('email or password found in DB');
+      } else if(request.params.userEmail === user.email && request.params.userPassword !== user.password) {
+        console.log('email found in DB, wrong password');
         response.status(401)
         response.send()
       } else {
