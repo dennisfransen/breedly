@@ -9,9 +9,7 @@
               <v-card color="rgba(0, 0, 0, 0.0" flat tile>
                 <v-text-field dark v-model="email" label="E-mail" required></v-text-field>
                 <v-text-field dark v-model="password" label="Password" :type="'password'" required></v-text-field>
-                <v-btn @click="fetchCheckUser(email, password)">Login
-                  <div v-if="login" route :to="searchLink"></div>
-                </v-btn>
+                <v-btn @click="fetchUser(email, password)">Login</v-btn>
               </v-card>
             </v-flex>
           </v-layout>
@@ -22,30 +20,43 @@
 </template>
 
 <script>
+import Search from './Search.vue'
+
 export default {
+  components: {
+    Search
+  },
   data() {
     return {
       email: null,
       password: null,
-      login: null,
-      searchLink: '/search'
+      searchLink: "/search"
     };
   },
   methods: {
-    loginBtnPressed() {
-      alert("You pressed login button");
+    checkAuthentication(status) {
+      if (status === 404) {
+        console.log('Not a registered user')
+        alert('You are not registered')
+      } else if(status === 401) {
+        console.log('Wrong email or password');
+        alert('Email or password is wrong')
+      } else {
+        console.log('logged in');
+        this.$router.push(this.searchLink)
+      }
     },
-    fetchCheckUser(email, password) {
-      // this.login = false
+    fetchUser(email, password) {
       console.log("inside fetchCheckUser method");
 
       fetch("http://localhost:3000/users/" + email + "/" + password).then(
         response => {
           console.log("fetchCheckUser worked");
-          console.log(response);
-          this.login = true
+          console.log(response.status);
+          this.checkAuthentication(response.status)
+          
         }
-      );
+      )
     }
   }
 };

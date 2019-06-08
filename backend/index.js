@@ -20,7 +20,7 @@ sqlite.open('db.sqlite').then(database_ => {
 })
 
 console.log('Database connection up and running')
-
+// Query for search.vue, show all animals in DB
 app.get('/pets', (request, response) => {
   database.all('SELECT * FROM pet').then(pets => {
     response.send(pets)
@@ -29,19 +29,25 @@ app.get('/pets', (request, response) => {
 
   })
 })
-
+// Query for login.vue, check if email and password in DB
 app.get('/users/:userEmail/:userPassword', (request, response) => {
   database.all('SELECT * FROM user').then(users => {
     users.forEach(user => {
       if (request.params.userEmail === user.email && request.params.userPassword === user.password) {
-        console.log('You are logged in');
-
+        console.log('user and password exsists in DB');
+        response.send()
+      } else if(request.params.userEmail === user.email || request.params.userPassword === user.password) {
+        console.log('email or password found in DB');
+        response.status(401)
+        response.send()
       } else {
-        console.log('You do not have account')
+        console.log('user and password doesnt exsist in DB')
+        response.status(404)
+        response.send()
       }
     })
   })
-  response.send()
+  
 })
 
 app.listen(3000)
