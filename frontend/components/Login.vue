@@ -9,7 +9,7 @@
               <v-card  class="translucentBackground" flat tile>
                 <v-text-field dark v-model="email" label="E-mail" required></v-text-field>
                 <v-text-field dark v-model="password" label="Password" :type="'password'" required></v-text-field>
-                <v-btn @click="fetchUser(email, password)">Login</v-btn>
+                <v-btn dark outline  @click="fetchUser(email, password)">Login<v-icon color="green" right="" >vpn_key</v-icon></v-btn>
               </v-card>
               <!-- card for error message when email dosen't exsist -->
               <v-card v-if="notRegistered" flat tile class="translucentBackground"> 
@@ -18,7 +18,7 @@
                   We can't find an account with this email!
                 </div>
               </v-card>
-              <!-- car for error message when password is wrong -->
+              <!-- card for error message when password is wrong -->
               <v-card v-if="wrongPassword" flat tile class="translucentBackground"> 
                 <v-divider></v-divider>
                 <div class="white--text">
