@@ -7,8 +7,8 @@
             <v-flex xs4 text-xs-center>
               <!-- card for login -->
               <v-card  class="translucentBackground" flat tile>
-                <v-text-field dark v-model="email" label="E-mail" required></v-text-field>
-                <v-text-field dark v-model="password" label="Password" :type="'password'" required></v-text-field>
+                <v-text-field color="green" dark v-model="email" label="E-mail" required></v-text-field>
+                <v-text-field color="green" dark v-model="password" label="Password" :type="'password'" required></v-text-field>
                 <v-btn @click="fetchUser(email, password)">Login</v-btn>
               </v-card>
               <!-- card for error message when email dosen't exsist -->
@@ -42,7 +42,7 @@ export default {
       searchLink: "/search",
       notRegistered: null,
       wrongPassword: null
-    };
+    }
   },
   methods: {
     checkAuthentication(status) {
