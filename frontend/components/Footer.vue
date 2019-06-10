@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: "footer",
+    name: "appFooter",
     data () {
         return {
             icons: [
