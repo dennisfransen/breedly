@@ -38,8 +38,8 @@
               <v-divider class="mx-3"></v-divider>
 
               <v-container fluid>
-                <v-switch color="success" @click="filter" v-model="switchFemale" :label="`Female`"></v-switch>
-                <v-switch color="success" v-model="switchMale" :label="`Male`"></v-switch>
+                <v-switch color="success" @click="filterFemale" :label="`Female`"></v-switch>
+                <v-switch color="success" @click="filterMale" v-model="switchMale" :label="`Male`"></v-switch>
 
                 <v-divider></v-divider>
 
@@ -62,9 +62,10 @@
     },
     data() {
       return {
-        switchFemale: true,
-        switchMale: true,
-        switchPedigree: true,
+        switchFemale: false,
+        switchMale: null,
+        switchPedigree: false,
+
         constPets: null,
         pets: null,
         searchText: null,
@@ -77,6 +78,29 @@
         this.switchMale = false;
         this.switchPedigree = false;
       },
+      filterFemale() {
+
+      },
+
+      filterMale() {
+
+        let maleAnimals = []
+
+        for (let i = 0; i < this.pets.length; i++) {
+          let pet = this.pets[i];
+          if (pet.gender === 1) {
+            maleAnimals.push(pet)
+          }
+        }
+
+        if (this.switchMale){
+          console.log(maleAnimals)
+          this.pets = maleAnimals
+        } else if (!this.switchMale) {
+          this.pets = this.constPets
+        }
+      },
+
       fetchPets() {
         fetch("http://localhost:3000/pets")
           .then(response => response.json())
