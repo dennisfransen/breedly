@@ -42,7 +42,7 @@ export default {
       searchLink: "/search",
       notRegistered: null,
       wrongPassword: null
-    };
+    }
   },
   methods: {
     checkAuthentication(status) {
