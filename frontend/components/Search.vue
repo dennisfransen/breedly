@@ -18,7 +18,7 @@
         <v-layout row wrap>
           <v-flex mt-3 xs9>
             <div>
-              <v-expansion-panel v-model="panel" expand>
+              <v-expansion-panel expand>
                 <v-expansion-panel-content v-for="animal in pets" :key="animal.name">
                   <template v-slot:actions>
                     <v-icon small>fas fa-chevron-up</v-icon>
