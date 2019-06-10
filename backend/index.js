@@ -31,28 +31,28 @@ app.get('/pets', (request, response) => {
 })
 // Query for login.vue, check if email and password in DB
 app.get('/users/:userEmail/:userPassword', (request, response) => {
-  database.all('SELECT * FROM user').then(users => {
-    // console.log(users);
+  database.all('SELECT * FROM user').then(users => { // UNIQUE
+    var tempUser = null
 
     for (let i = 0; i < users.length; i++) {
-      const element = users[i];
+      tempUser = users[i];
 
-      if (request.params.userEmail === element.email && request.params.userPassword === element.password) {
+      if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
         console.log('user and password exsists in DB');
         response.status(200)
+        response.send(tempUser.name)
         break
-        // response.send()
-      } else if (request.params.userEmail === element.email && request.params.userPassword !== element.password) {
+      } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         console.log('email found in DB, wrong password');
-        response.status(401)
+        response.status(401) // sträng eller json, { error: 'password' }
+        response.send('')
         break
-        // response.send()
       } else {
         console.log('user and password doesnt exsist in DB ' + request.params.userEmail, request.params.userPassword)
-        response.status(404)
+        response.status(404) // { error: 'not_found' }
+        response.send('')
       }
     }
-    response.send()
   })
 })
 
@@ -62,12 +62,7 @@ app.get('/contacts', (request, response) => {
     { email: 'hardy@random.com', phone: '1958023452' },
   ]
   response.send(contacts)
-// app.get('/users', (request, response) => {
-//   database.all('SELECT * FROM user')
-//   .then(users => {
-//     response.send(users)
-//   })
-// })
+})
 
 app.post('/users', (request, response) => {
   console.log(request.body)

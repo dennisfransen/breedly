@@ -41,7 +41,8 @@ export default {
       password: null,
       searchLink: "/search",
       notRegistered: null,
-      wrongPassword: null
+      wrongPassword: null,
+      test: null
     }
   },
   methods: {
@@ -66,11 +67,15 @@ export default {
       fetch("http://localhost:3000/users/" + email + "/" + password).then(
         response => {
           console.log("fetchCheckUser worked");
-          console.log(response.status);
+          console.log(response);
           this.checkAuthentication(response.status)
           
-        }
-      )
+          return response.text()
+        }).then(result => {
+          this.test = result
+          console.log('result logg: ' + result);
+          
+        })
     }
   }
 };
