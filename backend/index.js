@@ -50,6 +50,14 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
   
 })
 
+app.get('/contacts', (request, response) => {
+  const contacts = [
+    { email: 'randy@random.com', phone: '1834214567' },
+    { email: 'hardy@random.com', phone: '1958023452' },
+  ]
+  response.send(contacts)
+})
+
 app.listen(3000)
 
 

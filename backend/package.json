@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
-    "serve": "webpack-dev-server"
+    "start": "node ."
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +14,5 @@
     "path": "^0.12.7",
     "sqlite": "^3.0.3",
     "uuid": "^3.3.2"
-  },
-  "devDependencies": {
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.5.1"
   }
 }
