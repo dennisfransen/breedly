@@ -25,32 +25,35 @@ app.get('/pets', (request, response) => {
   database.all('SELECT * FROM pet').then(pets => {
     response.send(pets)
     console.log('All animals in db are: ');
-    console.log(pets);
+    // console.log(pets);
 
   })
 })
 // Query for login.vue, check if email and password in DB
 app.get('/users/:userEmail/:userPassword', (request, response) => {
   database.all('SELECT * FROM user').then(users => {
-    console.log(users);
-    
-    users.forEach(user => {
-      if (request.params.userEmail === user.email && request.params.userPassword === user.password) {
+    // console.log(users);
+
+    for (let i = 0; i < users.length; i++) {
+      const element = users[i];
+
+      if (request.params.userEmail === element.email && request.params.userPassword === element.password) {
         console.log('user and password exsists in DB');
-        response.send()
-      } else if(request.params.userEmail === user.email && request.params.userPassword !== user.password) {
+        response.status(200)
+        break
+        // response.send()
+      } else if (request.params.userEmail === element.email && request.params.userPassword !== element.password) {
         console.log('email found in DB, wrong password');
         response.status(401)
-        response.send()
+        break
+        // response.send()
       } else {
-        console.log(request.params.userEmail, request.params.userPassword)
-        console.log('user and password doesnt exsist in DB')
+        console.log('user and password doesnt exsist in DB ' + request.params.userEmail, request.params.userPassword)
         response.status(404)
-        response.send()
       }
-    })
+    }
+    response.send()
   })
-  
 })
 
 // app.get('/users', (request, response) => {
@@ -59,7 +62,7 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
 //     response.send(users)
 //   })
 // })
- 
+
 app.post('/users', (request, response) => {
   console.log(request.body)
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, uuidv4()])
