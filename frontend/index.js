@@ -29,8 +29,15 @@ const state = {
     userLoggedIn: null
 }
 
+const mutations = {
+    WhosLoggedIn(state, name){
+        state.userLoggedIn = name
+    }
+}
+
 const store = new Vuex.Store({
-    state
+    state,
+    mutations
 })
 
 const router = new Router({

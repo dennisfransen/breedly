@@ -42,7 +42,7 @@ export default {
       searchLink: "/search",
       notRegistered: null,
       wrongPassword: null,
-      test: null
+      name: null
     }
   },
   methods: {
@@ -50,7 +50,6 @@ export default {
       if (status === 200) {
         console.log('logged in');
         this.$router.push(this.searchLink)
-        
       } else if(status === 401) {
         console.log('Wrong email or password')
         this.wrongPassword = true
@@ -72,9 +71,12 @@ export default {
           
           return response.text()
         }).then(result => {
-          this.test = result
           console.log('result logg: ' + result);
+          this.name = result
+          console.log(this.name);
           
+          this.$store.commit('WhosLoggedIn', this.name)
+          console.log(this.$store.state.userLoggedIn);
         })
     }
   }
