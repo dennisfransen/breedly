@@ -21,7 +21,7 @@
                   <!-- scroll list for location -->
                   <v-menu offset-x>
                     <template v-slot:activator="{ on }">
-                      <v-btn  v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
+                      <v-btn dark outline v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
                     </template>
                   <v-list style="max-height: 300px" class="scroll-y">
                     <v-list-tile v-for="(county, index) in countyArray" :key="index" @click="chooseCounty(index)">
@@ -30,7 +30,7 @@
                   </v-list>
                   </v-menu>
 
-                  <v-btn  @click="next(email, password, name)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
+                  <v-btn dark outline @click="next(email, password, name)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
               
               </v-card>
              
@@ -48,8 +48,8 @@
                 <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
                 <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
                 
-                <v-btn @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
-                <v-btn @click="registerPet(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
+                <v-btn dark outline @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
+                <v-btn dark outline @click="registerPet(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
 
               </v-card>
             
@@ -137,26 +137,29 @@
         this.petInfo = {
           type: type,
           name: name,
+          gender: this.gender,
           age: age,
           description: description,
           pedigree: pedigree
         }
+        this.savePet()
         console.log(this.petInfo)
       },
       petGender(gender) {
+        // this.gender true for male false for female
         if(gender) {
           this.petMale = false
           this.petFemale = true
+          this.gender = false
         } else if(!gender) {
           this.petMale = true
           this.petFemale = false
+          this.gender = true
         }
       },
-      // Save user to database
-      saveUser(userInfo) {
-        fetch('http://localhost:8080/register', {
-            body: '{ ' + userInfo + '}',
-            // body: '{ "name": "' + this.name + '", "password": ' + this.password + ', "email": ' + this.email + ', "location": ' + this.location + ', "number": ' + this.number + '}',
+      saveUser() {
+        fetch('http://localhost:3000/users', {
+            body: '{ "name": "' + this.name + '", "password": "' + this.password + '", "email": "' + this.email + '", "location": "' + this.chosenCounty + '", "number": ' + this.number + '}',
             headers: {
               'Content-Type': 'application/json'
             },
@@ -165,7 +168,20 @@
           .then(result => {
             console.log('saved user', result)
           })
+      },
+      savePet() {
+        fetch('http://localhost:3000/pets', {
+          body: '{"name": "' + this.petName + '", "type": "' + this.petType + '", "description": "' + this.petDescription + '", "gender": ' + this.gender + ', "pedigree": ' + this.pedigree + ', "age": ' + this.petAge + '}',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST'
+        })
+        .then(result => {
+          console.log(result)
+        })
       }
+      
     }
   }
 </script>
