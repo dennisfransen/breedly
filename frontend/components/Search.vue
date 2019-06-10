@@ -38,7 +38,7 @@
               <v-divider class="mx-3"></v-divider>
 
               <v-container fluid>
-                <v-switch color="success" @click="filter" v-model="switchFemale" :label="`Female`"></v-switch>
+                <v-switch color="success" v-model="switchFemale" :label="`Female`"></v-switch>
                 <v-switch color="success" v-model="switchMale" :label="`Male`"></v-switch>
 
                 <v-divider></v-divider>
