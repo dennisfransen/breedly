@@ -137,26 +137,29 @@
         this.petInfo = {
           type: type,
           name: name,
+          gender: this.gender,
           age: age,
           description: description,
           pedigree: pedigree
         }
+        this.savePet()
         console.log(this.petInfo)
       },
       petGender(gender) {
+        // this.gender true for male false for female
         if(gender) {
           this.petMale = false
           this.petFemale = true
+          this.gender = false
         } else if(!gender) {
           this.petMale = true
           this.petFemale = false
+          this.gender = true
         }
       },
-      // Save user to database
-      saveUser(userInfo) {
-        fetch('http://localhost:8080/register', {
-            body: '{ ' + userInfo + '}',
-            // body: '{ "name": "' + this.name + '", "password": ' + this.password + ', "email": ' + this.email + ', "location": ' + this.location + ', "number": ' + this.number + '}',
+      saveUser() {
+        fetch('http://localhost:3000/users', {
+            body: '{ "name": "' + this.name + '", "password": "' + this.password + '", "email": "' + this.email + '", "location": "' + this.chosenCounty + '", "number": ' + this.number + '}',
             headers: {
               'Content-Type': 'application/json'
             },
@@ -165,7 +168,20 @@
           .then(result => {
             console.log('saved user', result)
           })
+      },
+      savePet() {
+        fetch('http://localhost:3000/pets', {
+          body: '{"name": "' + this.petName + '", "type": "' + this.petType + '", "description": "' + this.petDescription + '", "gender": ' + this.gender + ', "pedigree": ' + this.pedigree + ', "age": ' + this.petAge + '}',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST'
+        })
+        .then(result => {
+          console.log(result)
+        })
       }
+      
     }
   }
 </script>
