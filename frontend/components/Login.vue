@@ -46,15 +46,16 @@ export default {
   },
   methods: {
     checkAuthentication(status) {
-      if (status === 404) {
-        console.log('Not a registered user')
-        this.notRegistered = true
+      if (status === 200) {
+        console.log('logged in');
+        this.$router.push(this.searchLink)
+        
       } else if(status === 401) {
         console.log('Wrong email or password')
         this.wrongPassword = true
       } else {
-        console.log('logged in');
-        this.$router.push(this.searchLink)
+        console.log('Not a registered user')
+        this.notRegistered = true
       }
     },
     fetchUser(email, password) {
