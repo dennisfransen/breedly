@@ -21,8 +21,8 @@
                   <!-- scroll list for location -->
                   <v-menu offset-x>
                     <template v-slot:activator="{ on }">
-                      <v-btn  v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
-                    </template>
+                        <v-btn  v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
+                  </template>
                   <v-list style="max-height: 300px" class="scroll-y">
                     <v-list-tile v-for="(county, index) in countyArray" :key="index" @click="chooseCounty(index)">
                       <v-list-tile-title>{{ county }}</v-list-tile-title>
@@ -30,7 +30,7 @@
                   </v-list>
                   </v-menu>
 
-                  <v-btn  @click="next(email, password, name)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
+                  <v-btn  @click="next(email, password, name, number)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
               
               </v-card>
              
@@ -49,10 +49,15 @@
                 <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
                 
                 <v-btn @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
-                <v-btn @click="registerPet(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
+                <v-btn @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
 
               </v-card>
-            
+              <!-- alert for user to fill out all fields -->
+              <v-card dark v-if="emptyFields" flat tile color="rgba(0, 0, 0, 0.0"> 
+                 <v-divider></v-divider>
+                  <div> Please fill out all the fields. </div>
+              </v-card>
+
             </v-flex>
           </v-layout>
         </v-container>
@@ -91,12 +96,12 @@
           'Örebro',
           'Östergötland'
         ],
+        emptyFields: false,
         email: null,
         name: null,
         password: null,
         chosenCounty: 'County',
         number: null,
-        location: 'County',
         userInfo: null,
         nextInfo: false,
         petName: null,
@@ -115,43 +120,61 @@
         console.log(this.countyArray[index])
         this.chosenCounty = this.countyArray[index]
       },
-      register(email, password, name) {
-        this.location = this.countyArray[index]
-      },
       // Get user information and save to user object
       next(email, password, name, number) {
         this.userInfo = {
           name: name,
           password: password,
           email: email,
-          number: number,
-          location: this.location
+          location: this.chosenCounty,
+          number: number
         }
-        this.nextInfo = true
-        this.saveUser(this.userInfo)
+        this.fieldChecker(this.userInfo)
       },
       back() {
         this.nextInfo = false
       },
-      registerPet(type, name, age, description, pedigree) {
-        this.petInfo = {
-          type: type,
-          name: name,
-          gender: this.gender,
-          age: age,
-          description: description,
-          pedigree: pedigree
+      // Checker for if all fields have been filled
+      fieldChecker(fields) {
+        for (var field in fields) {
+          if (fields[field] !== null && fields[field] != 'County') {
+            console.log('ALL FIELDS FILLED');
+            this.emptyFields = false
+          } else if (fields[field] === null || fields[field] == 'County') {
+            console.log('FILL OUT ALL FIELDS')
+            this.emptyFields = true
+          }
         }
-        this.savePet()
-        console.log(this.petInfo)
+        if(!this.emptyFields) {
+          this.nextInfo = true
+        }
+      },
+      register(type, name, age, description, pedigree) {
+        this.petInfo = {
+          name: name,
+          type: type,
+          description: description,
+          gender: this.gender,
+          pedigree: pedigree,
+          age: age
+        }
+
+        this.fieldChecker(this.petInfo)
+
+        if(!this.emptyFields) {
+          this.saveUser()
+          this.savePet()
+          this.$router.push('/Search')
+        }
+
       },
       petGender(gender) {
         // this.gender true for male false for female
-        if(gender) {
+        if (gender) {
           this.petMale = false
           this.petFemale = true
           this.gender = false
-        } else if(!gender) {
+        } else if (!gender) {
           this.petMale = true
           this.petFemale = false
           this.gender = true
@@ -159,7 +182,7 @@
       },
       saveUser() {
         fetch('http://localhost:3000/users', {
-            body: '{ "name": "' + this.name + '", "password": "' + this.password + '", "email": "' + this.email + '", "location": "' + this.chosenCounty + '", "number": ' + this.number + '}',
+            body: JSON.stringify(this.userInfo),
             headers: {
               'Content-Type': 'application/json'
             },
@@ -168,21 +191,26 @@
           .then(result => {
             console.log('saved user', result)
           })
+          .catch(error => {
+            console.log(errror)
+          })
       },
       savePet() {
         fetch('http://localhost:3000/pets', {
-          body: '{"name": "' + this.petName + '", "type": "' + this.petType + '", "description": "' + this.petDescription + '", "gender": ' + this.gender + ', "pedigree": ' + this.pedigree + ', "age": ' + this.petAge + '}',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: 'POST'
-        })
-        .then(result => {
-          console.log(result)
-        })
-        this.$router.push('/Search')
+            body: JSON.stringify(this.petInfo),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: 'POST'
+          })
+          .then(result => {
+            console.log(result)
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
-      
+  
     }
   }
 </script>

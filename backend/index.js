@@ -52,17 +52,12 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
   })
   
 })
-
-// app.get('/users', (request, response) => {
-//   database.all('SELECT * FROM user')
-//   .then(users => {
-//     response.send(users)
-//   })
-// })
  
 app.post('/users', (request, response) => {
-  console.log(request.body)
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, uuidv4()])
+  .then(() => {
+    response.send('INSERTED USER')
+  })
 })
 
 app.post('/pets', (request, response) => {
