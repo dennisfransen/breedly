@@ -41,20 +41,21 @@ export default {
       password: null,
       searchLink: "/search",
       notRegistered: null,
-      wrongPassword: null
+      wrongPassword: null,
+      name: null
     }
   },
   methods: {
     checkAuthentication(status) {
-      if (status === 404) {
-        console.log('Not a registered user')
-        this.notRegistered = true
+      if (status === 200) {
+        console.log('logged in');
+        this.$router.push(this.searchLink)
       } else if(status === 401) {
         console.log('Wrong email or password')
         this.wrongPassword = true
       } else {
-        console.log('logged in');
-        this.$router.push(this.searchLink)
+        console.log('Not a registered user')
+        this.notRegistered = true
       }
     },
     fetchUser(email, password) {
@@ -65,11 +66,18 @@ export default {
       fetch("http://localhost:3000/users/" + email + "/" + password).then(
         response => {
           console.log("fetchCheckUser worked");
-          console.log(response.status);
+          console.log(response);
           this.checkAuthentication(response.status)
           
-        }
-      )
+          return response.text()
+        }).then(result => {
+          console.log('result logg: ' + result);
+          this.name = result
+          console.log(this.name);
+          
+          this.$store.commit('WhosLoggedIn', this.name)
+          console.log(this.$store.state.userLoggedIn);
+        })
     }
   }
 };

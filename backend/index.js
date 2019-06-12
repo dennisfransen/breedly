@@ -25,32 +25,35 @@ app.get('/pets', (request, response) => {
   database.all('SELECT * FROM pet').then(pets => {
     response.send(pets)
     console.log('All animals in db are: ');
-    console.log(pets);
+    // console.log(pets);
 
   })
 })
 // Query for login.vue, check if email and password in DB
 app.get('/users/:userEmail/:userPassword', (request, response) => {
-  database.all('SELECT * FROM user').then(users => {
-    console.log(users);
-    
-    users.forEach(user => {
-      if (request.params.userEmail === user.email && request.params.userPassword === user.password) {
+  database.all('SELECT * FROM user').then(users => { // UNIQUE
+    var tempUser = null
+
+    for (let i = 0; i < users.length; i++) {
+      tempUser = users[i];
+
+      if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
         console.log('user and password exsists in DB');
-        response.send()
-      } else if(request.params.userEmail === user.email && request.params.userPassword !== user.password) {
+        response.status(200)
+        response.send(tempUser.name)
+        break
+      } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         console.log('email found in DB, wrong password');
-        response.status(401)
-        response.send()
+        response.status(401) // sträng eller json, { error: 'password' }
+        response.send('')
+        break
       } else {
-        console.log(request.params.userEmail, request.params.userPassword)
-        console.log('user and password doesnt exsist in DB')
-        response.status(404)
-        response.send()
+        console.log('user and password doesnt exsist in DB ' + request.params.userEmail, request.params.userPassword)
+        response.status(404) // { error: 'not_found' }
+        response.send('')
       }
-    })
+    }
   })
-  
 })
 
 app.get('/contacts', (request, response) => {
@@ -59,6 +62,7 @@ app.get('/contacts', (request, response) => {
     { email: 'hardy@random.com', phone: '1958023452' },
   ]
   response.send(contacts)
+<<<<<<< HEAD
 // app.get('/users', (request, response) => {
 //   database.all('SELECT * FROM user')
 //   .then(users => {
@@ -66,6 +70,10 @@ app.get('/contacts', (request, response) => {
 //   })
  })
  
+=======
+})
+
+>>>>>>> d46f581a57df18dc3687a34f0cff5e177b99e5e7
 app.post('/users', (request, response) => {
   console.log(request.body)
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, uuidv4()])
@@ -76,6 +84,3 @@ app.post('/pets', (request, response) => {
 })
 
 app.listen(3000)
-
-
-
