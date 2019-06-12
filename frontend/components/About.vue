@@ -1,18 +1,37 @@
 <template>
     <div class="about">
+        <v-parallax height="800" src="../assets/dog-wallpaper.jpg" >
     
         <v-container grid-list-md>
             <v-layout row wrap>
                 <v-flex v-for="prop in aboutProps" :key="prop.text" xs12 lg4>
-                    <v-card height="45em" class="pt-5">
+                    <v-card dark color="rgba(0, 0, 0, 0.4" height="28em" width="26,5em" class="pt-5">
                         <v-img :src="prop.img" contain max-height="100"></v-img>
                         <v-card-title class="mt-4 display-2 justify-center text-uppercase"> {{ prop.text }}</v-card-title>
-                        <v-card-text class="pa-3">{{ prop.msg }}</v-card-text>
+                        <v-card-text class="pa-3" style='font-size: 1.1em'>{{ prop.msg }}</v-card-text>
                     </v-card>
                 </v-flex>
+                <v-flex xs12>
+                    <v-card class="text-xs-center" dark color="rgba(0, 0, 0, 0.4">
+                        <v-icon size="100" color="green" >pets</v-icon>
+                        <v-card-text title style='font-size: 2em'>
+                        How does it work? kakan was here
+                        </v-card-text>
+                        <v-card-text style='font-size: 1.2em'>
+                        1. Create a profile for your pet
+                        </v-card-text>
+                        <v-card-text style='font-size: 1.2em'>
+                        2. Search for partner
+                        </v-card-text>
+                        <v-card-text style='font-size: 1.2em'>
+                        3. Let the fucking begin
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+                
             </v-layout>
         </v-container>
-    
+    </v-parallax>
     </div>
 </template>
 
@@ -24,17 +43,17 @@
                 aboutProps: [{
                         text: "Vision",
                         img: "./assets/eye-icon.png",
-                        msg: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde. Lorem ipsum dolor  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde.'
+                        msg: 'We at Breedly want to see a world where even our pets can find their true love online, and in the process giving us more loveable adorable pets.'
                     },
                     {
                         text: "Mission",
                         img: "./assets/rocket-icon.png",
-                        msg: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde.'
+                        msg: 'Our mission is to supply the means necessary for your pet to be able to breed with a suitable partner.'        
                     },
                     {
                         text: "Values",
                         img: "./assets/check-icon.png",
-                        msg: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore praesentium ipsam non facilis porro suscipit eveniet libero illum iste cumque laudantium placeat vero unde.  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus rem qui, sapiente autem asperiores labore'
+                        msg: 'Animals First! That is our motto here at Breedly.'                    
                     },
                 ],
                 
@@ -45,7 +64,11 @@
 
 <style scoped>
     .about {
-        /* temporary  */
-        background-color: gray;
+        /* background-image: url('../assets/Dog_Background.jpg');
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: static; */
+        
     }
 </style>

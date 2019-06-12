@@ -64,7 +64,7 @@ app.get('/contacts', (request, response) => {
 //   .then(users => {
 //     response.send(users)
 //   })
-// })
+ })
  
 app.post('/users', (request, response) => {
   console.log(request.body)

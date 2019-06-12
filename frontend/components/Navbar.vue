@@ -56,11 +56,7 @@
       return {
         links: [{
             path: '/about',
-            name: 'About us'
-          },
-          {
-            path: '/info',
-            name: 'How does Breedly work?'
+            name: 'About us / How does Breedly work?'
           },
           {
             path: '/contact',
