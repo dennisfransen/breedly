@@ -52,6 +52,7 @@
                 <v-btn @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
 
               </v-card>
+
               <!-- alert for user to fill out all fields -->
               <v-card dark v-if="emptyFields" flat tile color="rgba(0, 0, 0, 0.0"> 
                  <v-divider></v-divider>
@@ -138,10 +139,8 @@
       fieldChecker(fields) {
         for (var field in fields) {
           if (fields[field] !== null && fields[field] != 'County') {
-            console.log('ALL FIELDS FILLED');
             this.emptyFields = false
           } else if (fields[field] === null || fields[field] == 'County') {
-            console.log('FILL OUT ALL FIELDS')
             this.emptyFields = true
           }
         }
@@ -164,19 +163,20 @@
         if(!this.emptyFields) {
           this.saveUser()
           this.savePet()
+          this.$store.state.userLoggedIn = this.name
           this.$router.push('/Search')
         }
 
       },
+      // this.gender true for female false for male
       petGender(gender) {
-        // this.gender true for male false for female
-        if (gender) {
-          this.petMale = false
-          this.petFemale = true
-          this.gender = false
-        } else if (!gender) {
-          this.petMale = true
+        if (!gender) {
           this.petFemale = false
+          this.petMale = true
+          this.gender = false
+        } else if (gender) {
+          this.petFemale = true
+          this.petMale = false
           this.gender = true
         }
       },

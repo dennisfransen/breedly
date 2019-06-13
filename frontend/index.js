@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Router from 'vue-router'
+import Vuex from 'vuex'
 import App from './components/App.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
@@ -13,6 +14,7 @@ import Contact from './components/Contact.vue'
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(Router)
+Vue.use(Vuex)
 Vue.use(Vuetify, {
     iconfont: 'mdi',
     theme: {
@@ -20,8 +22,23 @@ Vue.use(Vuetify, {
         secondary: '#b0bec5',
         accent: '#8c9eff',
         error: '#b71c1c'
-      }
-  })
+    }
+})
+
+const state = {
+    userLoggedIn: null
+}
+
+const mutations = {
+    WhosLoggedIn(state, name){
+        state.userLoggedIn = name
+    }
+}
+
+const store = new Vuex.Store({
+    state,
+    mutations
+})
 
 const router = new Router({
     routes: [
@@ -37,5 +54,6 @@ const router = new Router({
 new Vue({
     el: '#app',
     render: h => h(App),
-    router
+    router,
+    store
 })
