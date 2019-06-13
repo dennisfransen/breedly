@@ -15,7 +15,7 @@
                     <v-card class="text-xs-center" dark color="rgba(0, 0, 0, 0.4">
                         <v-icon size="100" color="green" >pets</v-icon>
                         <v-card-text title style='font-size: 2em'>
-                        How does it work? kakan was here
+                        How does it work?
                         </v-card-text>
                         <v-card-text style='font-size: 1.2em'>
                         1. Create a profile for your pet

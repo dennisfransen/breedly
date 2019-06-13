@@ -19,7 +19,7 @@
 
       <v-spacer></v-spacer>
 
-      <div v-if="this.$store.state.userLoggedIn !== null">
+      <div v-if="this.$store.state.userLoggedIn !== '' ">
         <v-toolbar-items class="hidden-sm-and-down mr-3">
           <router-link class="mr-3" to="/profile">
             <v-toolbar-title style="margin-top: .45rem;" class="text-uppercase body-1 black--text">
@@ -33,7 +33,7 @@
           </router-link>
 
           <v-toolbar-title class="grey--text">
-            <v-btn flat class="font-weight-light navItem">{{Signout}}</v-btn>
+            <v-btn flat class="font-weight-light navItem" @click="signOut()">{{Signout}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
         <!-- </router-link> -->
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       Signout: "Sign out",
+      home: '/',
       links: [
         {
           path: "/about",
@@ -115,6 +116,12 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    signOut() {
+      this.$store.commit('WhosLoggedIn', '')
+      this.$router.push(this.home)
+    }
   }
 };
 </script>
