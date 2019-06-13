@@ -21,7 +21,7 @@
                   <!-- scroll list for location -->
                   <v-menu offset-x>
                     <template v-slot:activator="{ on }">
-                        <v-btn  v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
+                        <v-btn dark outline v-on="on" > {{ chosenCounty }} <v-icon color="red" right="" >location_on</v-icon> </v-btn>
                   </template>
                   <v-list style="max-height: 300px" class="scroll-y">
                     <v-list-tile v-for="(county, index) in countyArray" :key="index" @click="chooseCounty(index)">
@@ -30,7 +30,7 @@
                   </v-list>
                   </v-menu>
 
-                  <v-btn  @click="next(email, password, name, number)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
+                  <v-btn dark outline @click="next(email, password, name, number)">Next<v-icon color="green" right="" >arrow_forward</v-icon></v-btn>
               
               </v-card>
              
@@ -48,8 +48,8 @@
                 <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
                 <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
                 
-                <v-btn @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
-                <v-btn @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
+                <v-btn dark outline @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
+                <v-btn dark outline @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
 
               </v-card>
 
