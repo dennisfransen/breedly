@@ -33,25 +33,28 @@ app.get('/pets', (request, response) => {
 app.get('/users/:userEmail/:userPassword', (request, response) => {
   database.all('SELECT * FROM user').then(users => { // UNIQUE
     var tempUser = null
+    var userFound = false
 
     for (let i = 0; i < users.length; i++) {
       tempUser = users[i];
 
       if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
         console.log('user and password exsists in DB');
+        userFound = true
         response.status(200)
         response.send(tempUser.name)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         console.log('email found in DB, wrong password');
-        response.status(401) // sträng eller json, { error: 'password' }
-        response.send('')
         break
       } else {
         console.log('user and password doesnt exsist in DB ' + request.params.userEmail, request.params.userPassword)
-        response.status(404) // { error: 'not_found' }
-        response.send('')
       }
+    }
+
+    if (!userFound) {
+      response.status(401)
+      response.send('')
     }
   })
   
