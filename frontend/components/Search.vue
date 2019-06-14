@@ -102,7 +102,7 @@
       },
 
       fetchPets() {
-        fetch("http://localhost:3000/pets")
+        fetch("/api/pets")
           .then(response => response.json())
           .then(result => {
             this.pets = result;
