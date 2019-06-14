@@ -181,7 +181,7 @@
         }
       },
       saveUser() {
-        fetch('http://localhost:3000/users', {
+        fetch('/api/users', {
             body: JSON.stringify(this.userInfo),
             headers: {
               'Content-Type': 'application/json'
@@ -196,7 +196,7 @@
             console.log(errror)
           })
           .then(() => {
-            fetch('http://localhost:3000/pets', {
+            fetch('/api/pets', {
               body: JSON.stringify(this.petInfo),
               headers: {
                 'Content-Type': 'application/json'

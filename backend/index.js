@@ -26,16 +26,7 @@ console.log('Database connection up and running')
 app.get('/pets', (request, response) => {
   
   database.all('SELECT * FROM pet').then(pets => {
-    console.log('Cookies: ', request.cookies);
     response.send(pets)
-<<<<<<< HEAD
-    console.log('All animals in db are: ');
-    console.log(pets);
-=======
-    // console.log('All animals in db are: ');
-    // console.log(pets);
->>>>>>> isabelLogin6
-
   })
 })
 
@@ -51,69 +42,44 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
       tempUser = users[i];
 
       if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
-        console.log('user and password exsists in DB');
         cookieId = uuidv4()
         userFound = true
         response.status(200)
-        response.cookie('id', cookieId, { expires: new Date(Date.now() + 9000000) }).send(tempUser.id)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
-        console.log('email found in DB, wrong password');
+        response.status(401)
         break
       } else {
-        console.log('user and password doesnt exsist in DB ' + request.params.userEmail, request.params.userPassword)
+        response.status(404)
       }
     }
-
+    
     if (!userFound) {
-      response.status(401)
       response.send('')
     } else {
-      console.log('Add new id to cookieMonster')
-
       database.run('INSERT INTO cookieMonster VALUES (?,?)', [tempUser.id, cookieId]).then(() => {
-        response.send()
-
+        response.cookie('id', cookieId).send(tempUser.name)
       })
     }
   })
 })
 
-app.delete('/signout/:cookie', (request, response) => {
-  database.run('DELETE FROM cookieMonster WHERE secretId=?', [request.params.cookie])
-  console.log('Delete värdet är: ' , request.params.cookie);
-  response.clearCookie(request.params.cookie);
+app.delete('/signout', (request, response) => {
+
+  database.run('DELETE FROM cookieMonster WHERE secretId=?', [request.cookies.id])
+  response.clearCookie(request.cookies.id);
   response.send()
 })
 
-app.get('/setCookie/:userId', (request, response) =>{
-  console.log('setCokkie userid request', request.params.userId);
-  
-  database.all('SELECT * FROM cookieMonster WHERE userId = ?', [request.params.userId]).then(user =>{
-    response.send(user[0].secretId)
-    console.log('cookie id is: ', user[0].secretId);
-    
-  })
-})
-
 app.get('/getCookies', (request, response) => {
-  console.log('bell', request.cookies);
   
-  database.all('SELECT * FROM cookieMonster WHERE secretId = ?', [request.cookies.id]).then(user =>{
-    console.log('bell', user[0].secretId)
-
-    if (user[0].secretId === undefined) {
+  database.all('SELECT user.name FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId').then(user =>{
+    if (user[0].name === undefined) {
       response.send('')
+    } else {
+      response.send(user[0].name)
     }
-    response.send(user[0].userId)
-    
   })
-  
-<<<<<<< HEAD
-=======
-  
-  
->>>>>>> isabelLogin6
 })
 
 app.get('/contacts', (request, response) => {
@@ -128,7 +94,10 @@ app.post('/users', (request, response) => {
   var tempId = uuidv4()
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, tempId])
   .then(() => {
-    response.send(tempId)
+    var cookieId = uuidv4()
+    database.run('INSERT INTO cookieMonster VALUES (?,?)', [tempId, cookieId]).then(() => {
+      response.cookie('id', cookieId).send(tempId)
+    })
   })
 })
 
