@@ -63,7 +63,7 @@ export default {
       this.wrongPassword = false
       console.log("inside fetchCheckUser method");
 
-      fetch("http://localhost:3000/users/" + email + "/" + password).then(
+      fetch("/api/users/" + email + "/" + password).then(
         response => {
           console.log("fetchCheckUser worked");
           console.log(response);
