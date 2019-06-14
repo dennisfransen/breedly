@@ -29,6 +29,7 @@ app.get('/pets', (request, response) => {
 
   })
 })
+
 // Query for login.vue, check if email and password in DB
 app.get('/users/:userEmail/:userPassword', (request, response) => {
   database.all('SELECT * FROM user').then(users => { // UNIQUE
@@ -66,27 +67,21 @@ app.get('/contacts', (request, response) => {
     { email: 'hardy@random.com', phone: '1958023452' },
   ]
   response.send(contacts)
-<<<<<<< HEAD
-// app.get('/users', (request, response) => {
-//   database.all('SELECT * FROM user')
-//   .then(users => {
-//     response.send(users)
-//   })
- })
- 
-=======
 })
 
->>>>>>> d46f581a57df18dc3687a34f0cff5e177b99e5e7
 app.post('/users', (request, response) => {
-  database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, uuidv4()])
+  var tempId = uuidv4()
+  database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, tempId])
   .then(() => {
-    response.send('INSERTED USER')
+    response.send(tempId)
   })
 })
 
 app.post('/pets', (request, response) => {
-  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?)', [request.body.name, uuidv4(), request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age])
+  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?)', [request.body.name, request.body.userId, request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age])
+  .then(() => {
+    response.send('INSERTED PET')
+  })
 })
 
 app.listen(3000)
