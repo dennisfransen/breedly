@@ -66,18 +66,15 @@ app.get('/contacts', (request, response) => {
     { email: 'hardy@random.com', phone: '1958023452' },
   ]
   response.send(contacts)
-<<<<<<< HEAD
-// app.get('/users', (request, response) => {
-//   database.all('SELECT * FROM user')
-//   .then(users => {
-//     response.send(users)
-//   })
+app.get('/users', (request, response) => {
+  database.all('SELECT * FROM user')
+  .then(users => {
+    response.send(users)
+    console.log(users);
+    
+  })
  })
  
-=======
-})
-
->>>>>>> d46f581a57df18dc3687a34f0cff5e177b99e5e7
 app.post('/users', (request, response) => {
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, uuidv4()])
   .then(() => {

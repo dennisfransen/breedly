@@ -1,8 +1,8 @@
 <template>
-    <div class="about">
+    <div class="about" fill-height>
         <v-parallax height="800" src="../assets/dog-wallpaper.jpg" >
     
-        <v-container grid-list-md>
+        <v-container grid-list-md style="fill" class="scroll-y">
             <v-layout row wrap>
                 <v-flex v-for="prop in aboutProps" :key="prop.text" xs12 lg4>
                     <v-card dark color="rgba(0, 0, 0, 0.4" height="28em" width="26,5em" class="pt-5">

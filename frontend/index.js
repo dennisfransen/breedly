@@ -9,6 +9,8 @@ import Register from './components/Register.vue'
 import Search from './components/Search.vue'
 import Login from './components/Login.vue'
 import Contact from './components/Contact.vue'
+import Profile from './components/Profile.vue'
+
 // import '@mdi/font/css/materialdesignicons.css'
 // import 'vuetify/dist/vuetify.min.css'
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -48,7 +50,8 @@ const router = new Router({
         { path: '/register', name: 'register', component: Register },
         { path: '/search', name: 'search', component: Search },
         { path: '/login', name: 'login', component: Login },
-        { path: '/contact', name: 'contact', component: Contact }
+        { path: '/contact', name: 'contact', component: Contact },
+        { path : '/profile', name: 'profile', component: Profile }
     ]
 })
 
