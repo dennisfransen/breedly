@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import LoginVue from './Login.vue';
     export default {
         name: 'home',
         data() {

@@ -22,7 +22,7 @@
               <v-card v-if="wrongPassword" flat tile class="translucentBackground"> 
                 <v-divider></v-divider>
                 <div class="white--text">
-                  That password ain't right, dog.
+                  Wrong email or password
                 </div>
               </v-card>
             </v-flex>
@@ -48,36 +48,24 @@ export default {
   methods: {
     checkAuthentication(status) {
       if (status === 200) {
-        console.log('logged in');
         this.$router.push(this.searchLink)
       } else if(status === 401) {
-        console.log('Wrong email or password')
         this.wrongPassword = true
       } else {
-        console.log('Not a registered user')
         this.notRegistered = true
       }
     },
     fetchUser(email, password) {
       this.notRegistered = false
       this.wrongPassword = false
-      console.log("inside fetchCheckUser method");
 
-      fetch("http://localhost:3000/users/" + email + "/" + password).then(
-        response => {
-          console.log("fetchCheckUser worked");
-          console.log(response);
-          this.checkAuthentication(response.status)
-          
-          return response.text()
-        }).then(result => {
-          console.log('result logg: ' + result);
-          this.name = result
-          console.log(this.name);
-          
-          this.$store.commit('WhosLoggedIn', this.name)
-          console.log(this.$store.state.userLoggedIn);
-        })
+      fetch("/api/users/" + email + "/" + password).then(response => {
+        this.checkAuthentication(response.status)
+        return response.text()
+      }).then(result => {
+        this.name = result
+        this.$store.commit('WhosLoggedIn', this.name)
+      })
     }
   }
 };

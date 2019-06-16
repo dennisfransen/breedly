@@ -151,6 +151,7 @@
       register(type, name, age, description, pedigree) {
         this.petInfo = {
           name: name,
+          userId: null,
           type: type,
           description: description,
           gender: this.gender,
@@ -162,7 +163,6 @@
 
         if(!this.emptyFields) {
           this.saveUser()
-          this.savePet()
           this.$store.state.userLoggedIn = this.name
           this.$router.push('/Search')
         }
@@ -181,36 +181,36 @@
         }
       },
       saveUser() {
-        fetch('http://localhost:3000/users', {
+        fetch('/api/users', {
             body: JSON.stringify(this.userInfo),
             headers: {
               'Content-Type': 'application/json'
             },
             method: 'POST'
           })
+          .then(response => response.text())
           .then(result => {
-            console.log('saved user', result)
+            this.petInfo.userId = result
           })
           .catch(error => {
             console.log(errror)
           })
+          .then(() => {
+            fetch('/api/pets', {
+              body: JSON.stringify(this.petInfo),
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              method: 'POST'
+            })
+            .then(result => {
+              console.log(result)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          }) 
       },
-      savePet() {
-        fetch('http://localhost:3000/pets', {
-            body: JSON.stringify(this.petInfo),
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: 'POST'
-          })
-          .then(result => {
-            console.log(result)
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      }
-  
     }
   }
 </script>

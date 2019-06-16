@@ -91,4 +91,9 @@ typings/
 #DS Store
 .DS_Store
 
+# Database file
+*.sqlite
+*.sqlite-journal
+
+
 # End of https://www.gitignore.io/api/node

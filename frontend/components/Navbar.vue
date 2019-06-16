@@ -33,10 +33,9 @@
           </router-link>
 
           <v-toolbar-title class="grey--text">
-            <v-btn flat class="font-weight-light navItem" @click="signOut()">{{Signout}}</v-btn>
+            <v-btn flat class="font-weight-light navItem" @click="fetchClearCookie()">{{Signout}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
-        <!-- </router-link> -->
       </div>
 
       <!-- for-loop for register and login with link to each path -->
@@ -48,7 +47,7 @@
         </v-toolbar-items>
       </router-link>
 
-      <!-- burger menu for smaller devices -->
+      <!-- burger menu for smaller devices if user is not logged in -->
       <v-toolbar-items class="hidden-md-and-up">
         <v-menu>
           <template v-slot:activator="{ on }">
@@ -57,70 +56,68 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-tile v-for="link in linksAll" :key="link.path" route :to="link.path">
+            <v-list-tile v-for="link in links" :key="link.path" route :to="link.path">
               <v-list-tile-title>{{ link.name }}</v-list-tile-title>
             </v-list-tile>
+            <v-divider></v-divider>
+            <template v-if="this.$store.state.userLoggedIn !== '' ">
+              <v-list-tile>
+                <v-list-tile-title> 
+                  <v-icon left small>fas fa-user</v-icon>
+                  {{ this.$store.state.userLoggedIn}}
+                </v-list-tile-title>
+              </v-list-tile>
+              <v-list-tile>
+                <v-list-tile-title>
+                  {{this.signOut}}
+                </v-list-tile-title>
+              </v-list-tile>
+            </template>
+            <template v-else>
+              <v-list-tile v-for="link in linksAllSignedOut" :key="link.path" route :to="link.path">
+                <v-list-tile-title>{{ link.name }}</v-list-tile-title>
+              </v-list-tile>
+            </template>
           </v-list>
         </v-menu>
       </v-toolbar-items>
+
     </v-toolbar>
   </nav>
 </template>
 
 <script>
-export default {
+export default {  
   data() {
     return {
-      Signout: "Sign out",
+      signOut: "Sign out",
       home: '/',
       links: [
-        {
-          path: "/about",
-          name: 'About us / How does Breedly work?'
-        },
-        {
-          path: "/contact",
-          name: "Contact us"
-        }
+        { path: "/about", name: "About us"},
+        { path: "/info", name: "How does Breedly work?"},
+        { path: "/contact", name: "Contact us"}
       ],
       linksLogin: [
-        {
-          path: "/register",
-          name: "Register account"
-        },
-        {
-          path: "/login",
-          name: "Login"
-        }
+        { path: "/register", name: "Register account"},
+        { path: "/login", name: "Login"}
       ],
-      linksAll: [
-        {
-          path: "/about",
-          name: "About us"
-        },
-        {
-          path: "/info",
-          name: "How does Breedly work?"
-        },
-        {
-          path: "/contact",
-          name: "Contact us"
-        },
-        {
-          path: "/register",
-          name: "Register account"
-        },
-        {
-          path: "/login",
-          name: "Login"
-        }
+      linksAllSignedOut: [
+        { path: "/register", name: "Register account"},
+        { path: "/login", name: "Login"}
       ]
-    };
+    }
   },
   methods: {
     signOut() {
       this.$store.commit('WhosLoggedIn', '')
       this.$router.push(this.home)
+    }, 
+    fetchClearCookie() {
+      fetch('/api/signout/', {
+        method: 'DELETE'
+      }).then(response => {
+        this.signOut()
+      })
     }
   }
 };
