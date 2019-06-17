@@ -90,20 +90,20 @@
 export default {  
   data() {
     return {
-      signOutText: "Sign out",
+      signOutText: 'Sign out',
       home: '/',
       links: [
-        { path: "/about", name: "About us"},
-        { path: "/info", name: "How does Breedly work?"},
-        { path: "/contact", name: "Contact us"}
+        { path: '/about', name: 'About us'},
+        { path: '/info', name: 'How does Breedly work?'},
+        { path: '/contact', name: 'Contact us'}
       ],
       linksLogin: [
-        { path: "/register", name: "Register account"},
-        { path: "/login", name: "Login"}
+        { path: '/register', name: 'Register account'},
+        { path: '/login', name: 'Login'}
       ],
       linksAllSignedOut: [
-        { path: "/register", name: "Register account"},
-        { path: "/login", name: "Login"}
+        { path: '/register', name: 'Register account'},
+        { path: '/login', name: 'Login'}
       ]
     }
   },
