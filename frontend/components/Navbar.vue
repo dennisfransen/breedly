@@ -33,7 +33,7 @@
           </router-link>
 
           <v-toolbar-title class="grey--text">
-            <v-btn flat class="font-weight-light navItem" @click="fetchClearCookie()">{{Signout}}</v-btn>
+            <v-btn flat class="font-weight-light navItem" @click="fetchClearCookie()">{{signOutText}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
       </div>
@@ -68,8 +68,8 @@
                 </v-list-tile-title>
               </v-list-tile>
               <v-list-tile>
-                <v-list-tile-title>
-                  {{this.signOut}}
+                <v-list-tile-title @click="fetchClearCookie()">
+                  {{signOutText}}
                 </v-list-tile-title>
               </v-list-tile>
             </template>
@@ -90,20 +90,20 @@
 export default {  
   data() {
     return {
-      signOut: "Sign out",
+      signOutText: 'Sign out',
       home: '/',
       links: [
-        { path: "/about", name: "About us"},
-        { path: "/info", name: "How does Breedly work?"},
-        { path: "/contact", name: "Contact us"}
+        { path: '/about', name: 'About us'},
+        { path: '/info', name: 'How does Breedly work?'},
+        { path: '/contact', name: 'Contact us'}
       ],
       linksLogin: [
-        { path: "/register", name: "Register account"},
-        { path: "/login", name: "Login"}
+        { path: '/register', name: 'Register account'},
+        { path: '/login', name: 'Login'}
       ],
       linksAllSignedOut: [
-        { path: "/register", name: "Register account"},
-        { path: "/login", name: "Login"}
+        { path: '/register', name: 'Register account'},
+        { path: '/login', name: 'Login'}
       ]
     }
   },
