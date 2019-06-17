@@ -2,10 +2,12 @@ const express = require('express')
 const sqlite = require('sqlite')
 const bodyParser = require('body-parser')
 const uuidv4 = require('uuid/v4')
+const multer = require('multer')
 var cookieParser = require('cookie-parser')
 
 const app = express()
 let database
+var upload = multer({dest: 'images/'})
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -21,6 +23,8 @@ sqlite.open('db.sqlite').then(database_ => {
   database = database_
 })
 
+app.post('/petImage')
+
 console.log('Database connection up and running')
 // Query for search.vue, show all animals in DB
 app.get('/pets', (request, response) => {
@@ -28,13 +32,8 @@ app.get('/pets', (request, response) => {
   database.all('SELECT * FROM pet').then(pets => {
     console.log('Cookies: ', request.cookies);
     response.send(pets)
-<<<<<<< HEAD
-    console.log('All animals in db are: ');
-    console.log(pets);
-=======
     // console.log('All animals in db are: ');
     // console.log(pets);
->>>>>>> isabelLogin6
 
   })
 })
@@ -55,6 +54,7 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
         cookieId = uuidv4()
         userFound = true
         response.status(200)
+        request.params.userId
         response.cookie('id', cookieId, { expires: new Date(Date.now() + 9000000) }).send(tempUser.id)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
@@ -109,11 +109,6 @@ app.get('/getCookies', (request, response) => {
     
   })
   
-<<<<<<< HEAD
-=======
-  
-  
->>>>>>> isabelLogin6
 })
 
 app.get('/contacts', (request, response) => {

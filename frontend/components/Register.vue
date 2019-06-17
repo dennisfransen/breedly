@@ -47,6 +47,10 @@
                 
                 <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
                 <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
+
+                <form method="post" enctype="multipart/form-data">
+                  <input type="file" name="petImage"/>
+                </form>
                 
                 <v-btn dark outline @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
                 <v-btn dark outline @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
@@ -181,7 +185,7 @@
         }
       },
       saveUser() {
-        fetch('http://localhost:3000/users', {
+        fetch('/api/users', {
             body: JSON.stringify(this.userInfo),
             headers: {
               'Content-Type': 'application/json'
@@ -196,7 +200,7 @@
             console.log(errror)
           })
           .then(() => {
-            fetch('http://localhost:3000/pets', {
+            fetch('/api/pets', {
               body: JSON.stringify(this.petInfo),
               headers: {
                 'Content-Type': 'application/json'
