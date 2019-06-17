@@ -3,6 +3,7 @@ const sqlite = require('sqlite')
 const bodyParser = require('body-parser')
 const uuidv4 = require('uuid/v4')
 const multer = require('multer')
+const path = require('path')
 var cookieParser = require('cookie-parser')
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use('/images', express.static(path.join(path.resolve(), 'images')))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
@@ -31,12 +33,6 @@ app.get('/pets', (request, response) => {
   
   database.all('SELECT * FROM pet').then(pets => {
     response.send(pets)
-<<<<<<< HEAD
-    // console.log('All animals in db are: ');
-    // console.log(pets);
-
-=======
->>>>>>> e6dfff1f77a40c3e1047554a3d9e92586cc37e8a
   })
 })
 
@@ -55,11 +51,8 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
         cookieId = uuidv4()
         userFound = true
         response.status(200)
-<<<<<<< HEAD
         request.params.userId
-        response.cookie('id', cookieId, { expires: new Date(Date.now() + 9000000) }).send(tempUser.id)
-=======
->>>>>>> e6dfff1f77a40c3e1047554a3d9e92586cc37e8a
+        response.cookie('id', cookieId).send(tempUser.id)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         response.status(401)
@@ -104,6 +97,12 @@ app.get('/contacts', (request, response) => {
   response.send(contacts)
 })
 
+app.post('/file', upload.single('image'), (request, response) => {
+  console.log(request.file)
+  response.send(request.file)
+
+})
+
 app.post('/users', (request, response) => {
   var tempId = uuidv4()
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, tempId])
@@ -116,9 +115,9 @@ app.post('/users', (request, response) => {
 })
 
 app.post('/pets', (request, response) => {
-  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?)', [request.body.name, request.body.userId, request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age])
+  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [request.body.name, request.body.userId, request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age, request.body.imageName])
   .then(() => {
-    response.send('INSERTED PET')
+    response.send('inserted!')
   })
 })
 

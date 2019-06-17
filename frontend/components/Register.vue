@@ -49,7 +49,7 @@
                 <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
 
                 <form method="post" enctype="multipart/form-data">
-                  <input type="file" name="petImage"/>
+                  <input v-on:change="saveImage()" type="file" name="uploadedImage" ref="uploadedImage"/>
                 </form>
                 
                 <v-btn dark outline @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
@@ -75,11 +75,13 @@
 
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'register',
     data() {
       return {
-        countyArray: ['Blekinge',
+        countyArray: 
+        ['Blekinge',
           'Dalarna',
           'Gotland',
           'Gävleborg',
@@ -118,6 +120,9 @@
         petMale: null,
         petFemale: null,
         petInfo: null,
+        petId: null,
+        formData: null,
+        uploadedFile: ''
       }
     },
     methods: {
@@ -142,7 +147,7 @@
       // Checker for if all fields have been filled
       fieldChecker(fields) {
         for (var field in fields) {
-          if (fields[field] !== null && fields[field] != 'County') {
+          if (fields[field] !== null && fields[field] != 'County' ) {
             this.emptyFields = false
           } else if (fields[field] === null || fields[field] == 'County') {
             this.emptyFields = true
@@ -152,6 +157,7 @@
           this.nextInfo = true
         }
       },
+
       register(type, name, age, description, pedigree) {
         this.petInfo = {
           name: name,
@@ -160,7 +166,8 @@
           description: description,
           gender: this.gender,
           pedigree: pedigree,
-          age: age
+          age: age,
+          imageName: ''
         }
 
         this.fieldChecker(this.petInfo)
@@ -184,6 +191,14 @@
           this.gender = true
         }
       },
+      saveImage() {
+
+        this.formData = new FormData()
+
+        this.uploadedFile = this.$refs.uploadedImage[0].files[0]
+        this.formData.append('image', this.uploadedFile)
+
+      },
       saveUser() {
         fetch('/api/users', {
             body: JSON.stringify(this.userInfo),
@@ -200,21 +215,38 @@
             console.log(errror)
           })
           .then(() => {
-            fetch('/api/pets', {
-              body: JSON.stringify(this.petInfo),
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              method: 'POST'
+            axios.post('/api/file', this.formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+              }
             })
+            .then(response => response)
             .then(result => {
-              console.log(result)
+              this.petInfo.imageName = result.data.filename 
+              console.log('imagename for pet', this.petInfo.imageName)
             })
-            .catch(error => {
-              console.log(error)
+            .catch(() => {
+              console.log('Failed uploading image');
+            })
+            .then(() => {
+              fetch('/api/pets', {
+                body: JSON.stringify(this.petInfo),
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                method: 'POST'
+              })
+              .then(response => response.text())
+              .then(result => {
+                console.log('petimagename', this.petInfo.imageName)
+                console.log(result)
+              })
+              .catch(error => {
+                console.log(error)
+              })
             })
           }) 
-      },
+      }
     }
   }
 </script>

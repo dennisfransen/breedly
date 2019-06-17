@@ -27,7 +27,8 @@ Vue.use(Vuetify, {
 
 // Added vuex state and mutations to save if user is logged in or not
 const state = {
-    userLoggedIn: ''
+    userLoggedIn: '',
+    petId: ''
 }
 
 const mutations = {
