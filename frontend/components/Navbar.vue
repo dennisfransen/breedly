@@ -33,7 +33,7 @@
           </router-link>
 
           <v-toolbar-title class="grey--text">
-            <v-btn flat class="font-weight-light navItem" @click="fetchGetCookieId()">{{Signout}}</v-btn>
+            <v-btn flat class="font-weight-light navItem" @click="fetchClearCookie()">{{Signout}}</v-btn>
           </v-toolbar-title>
         </v-toolbar-items>
       </div>
@@ -69,7 +69,7 @@
               </v-list-tile>
               <v-list-tile>
                 <v-list-tile-title>
-                  {{this.Signout}}
+                  {{this.signOut}}
                 </v-list-tile-title>
               </v-list-tile>
             </template>
@@ -87,26 +87,15 @@
 </template>
 
 <script>
-export default {
+export default {  
   data() {
     return {
-      Signout: "Sign out",
+      signOut: "Sign out",
       home: '/',
       links: [
-<<<<<<< HEAD
-        {
-          path: "/about",
-          name: 'About us / How does Breedly work?'
-        },
-        {
-          path: "/contact",
-          name: "Contact us"
-        }
-=======
         { path: "/about", name: "About us"},
         { path: "/info", name: "How does Breedly work?"},
         { path: "/contact", name: "Contact us"}
->>>>>>> isabelLogin6
       ],
       linksLogin: [
         { path: "/register", name: "Register account"},
@@ -123,27 +112,12 @@ export default {
       this.$store.commit('WhosLoggedIn', '')
       this.$router.push(this.home)
     }, 
-    fetchClearCookie(cookie) {
-      fetch('/api/signout/' + cookie, {
+    fetchClearCookie() {
+      fetch('/api/signout/', {
         method: 'DELETE'
       }).then(response => {
-        console.log(cookie, 'removed from cookies');
         this.signOut()
-        
       })
-    },
-    fetchGetCookieId(){
-      var userId = this.$store.state.userLoggedIn
-      fetch('/api/setCookie/' + userId)
-        // .then(response => response.json())
-        .then(response => {
-          console.log('getCookie response: ',response);
-          return response.text()
-          
-        }).then(result =>{
-          console.log('getCookie result: ',result);
-          this.fetchClearCookie(result)
-        })
     }
   }
 };
