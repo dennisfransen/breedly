@@ -4,26 +4,50 @@
             <v-layout row wrap>
                 <v-flex xs12 sm6 offset-sm3 >
 
-                
-                    <v-card
-                    class="text-xs-center" 
-                    dark
-                    color="rgba(0, 0, 0, 0.2"
-                    style='font-size: 1.2em'
-                    >
+                    
+                    <v-card v-if="!addingPet" class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" style='font-size: 1.2em' >
+
                         <v-card-text >
                             
-                            <v-list-item-title > Email: <v-list-item-subtitle> {{ userProfile.email }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-item-title > EMAIL: <v-list-item-subtitle> {{ userProfile.email }} </v-list-item-subtitle> </v-list-item-title>
                             <br>
-                            <v-list-item-title> Full name: <v-list-item-subtitle> {{ userProfile.fullName }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-item-title> FULL NAME: <v-list-item-subtitle> {{ userProfile.fullName }} </v-list-item-subtitle> </v-list-item-title>
                             <br>
-                            <v-list-item-title> Phone number: <v-list-item-subtitle> {{ userProfile.phoneNumber }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-item-title> PHONE NUMBER: <v-list-item-subtitle> {{ userProfile.phoneNumber }} </v-list-item-subtitle> </v-list-item-title>
                             <br>
-                            <v-list-item-title> County: <v-list-item-subtitle> {{ userProfile.county }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-item-title> COUNTY: <v-list-item-subtitle> {{ userProfile.county }} </v-list-item-subtitle> </v-list-item-title>
                             <br>
+                            <v-btn v-if="!addingPet" dark outline @click="addPet()" >ADD PET <v-icon color="green" right="" >add_circle_outline</v-icon></v-btn>
+
                         </v-card-text>
-                        <v-card-text >
-                            <v-card color="rgba(0, 0, 0, 0.2" v-for="info in numbersPetArray" :key="info.userProfile">
+                        
+                    </v-card>
+                    <v-card class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" style='font-size: 1.2em'>
+                            
+                        <!-- <v-list style="max-height: 550px" class="scroll-y" color="rgba(0, 0, 0, 0.2" ></v-list> -->
+                            
+                            <v-card v-if="addingPet" class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" flat tile >
+
+                                <v-text-field dark v-model="petType" label="Pet type" required></v-text-field>
+                                <v-text-field dark v-model="petName" label="Pet name" required></v-text-field>
+                                <v-text-field dark v-model="petAge" label="Pet age" required></v-text-field>
+                                
+                                <v-textarea dark v-model="petDescription" label="Describe your pet">Description</v-textarea>
+
+                                <v-switch dark v-model="pedigree" label="Pedigree"></v-switch>
+                                
+                                <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
+                                <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
+                                
+                                <v-btn dark outline @click="cancel()"> Cancel <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
+                                <v-btn dark outline @click="register(petType, petName, petAge, petDescription, pedigree)"> Register <v-icon color="green" right="" >check_circle</v-icon></v-btn>
+                           
+                            </v-card>
+
+                            
+
+                        <v-card-text v-for="info in numbersPetArray" :key="info.userProfile">
+                            <v-card v-if="!addingPet" dark color="rgba(0, 0, 0, 0.1" >
                                 <v-list-item-title > Pet type: <v-list-item-subtitle> {{ userProfilePets.petType }} </v-list-item-subtitle> </v-list-item-title>
                                 <br>
                                 <v-list-item-title> Pet name: <v-list-item-subtitle> {{ userProfilePets.petName }} </v-list-item-subtitle> </v-list-item-title>
@@ -31,15 +55,17 @@
                                 <v-list-item-title> Pet age: <v-list-item-subtitle> {{ userProfilePets.petAge }} </v-list-item-subtitle> </v-list-item-title>
                                 <br>
                                 <v-list-item-title> Pet description: <v-list-item-subtitle> {{ userProfilePets.petDescription }} </v-list-item-subtitle> </v-list-item-title>
-                                <br>
-                                <!-- <v-checkbox v-model="checkbox" :lable="dawar"> </v-checkbox> -->
+
+                                
 
                             </v-card>
-                            <v-card>
-                                <v-btn >ADD PET</v-btn>
-                            </v-card>
+
+
                         </v-card-text>
-                    </v-card>
+
+                    
+                    </v-card>  
+                    
                 </v-flex>
             </v-layout>
         </v-container>
@@ -49,6 +75,9 @@
 
 <script>
 export default {
+    created(){
+        this.getUser()
+    },
     name: 'profile',
     data() {
         return {
@@ -67,16 +96,66 @@ export default {
                 petSex: ""
             }],
 
-            numbersPetArray: []
-
+            numbersPetArray: [1,2,3],
+            addingPet : false,
+            petName: null,
+            petType: null,
+            petAge: null,
+            petDescription: null,
+            pedigree: null,
+            gender: null,
+            petMale: null,
+            petFemale: null,
+            petInfo: null
             
         }
     },
     methods: {
+        cancel(){
+            this.addingPet = false
+        },
         addPet(){
-            
-        }
+            this.addingPet = true
 
+        },
+        getUser(){
+            console.log("inside gawad");
+            
+            fetch("/api/users/").then(response => {
+                console.log(response);
+                
+                return response.text()
+            }).then(result => {
+                this.name = result
+                this.$store.commit('WhosLoggedIn', this.name)
+            })
+        },
+              // this.gender true for female false for male
+        petGender(gender) {
+            if (!gender) {
+            this.petFemale = false
+            this.petMale = true
+            this.gender = false
+            } else if (gender) {
+            this.petFemale = true
+            this.petMale = false
+            this.gender = true
+        }
+        },
+        back() {
+            this.addingPet = false
+        },
+        register(type, name, age, description, pedigree) {
+            this.petInfo = {
+            name: name,
+            userId: null,
+            type: type,
+            description: description,
+            gender: this.gender,
+            pedigree: pedigree,
+            age: age
+            }
+        }
     }
 }
 </script>

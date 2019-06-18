@@ -88,6 +88,8 @@ app.get('/contacts', (request, response) => {
     { email: 'hardy@random.com', phone: '1958023452' },
   ]
   response.send(contacts)
+})
+
 app.get('/users', (request, response) => {
   database.all('SELECT * FROM user')
   .then(users => {

@@ -93,8 +93,7 @@ export default {
       signOut: "Sign out",
       home: '/',
       links: [
-        { path: "/about", name: "About us"},
-        { path: "/info", name: "How does Breedly work?"},
+        { path: "/about", name: "About us / How does Breedly work?"},
         { path: "/contact", name: "Contact us"}
       ],
       linksLogin: [
