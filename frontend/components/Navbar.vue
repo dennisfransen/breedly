@@ -94,7 +94,6 @@ export default {
       home: '/',
       links: [
         { path: '/about', name: 'About us'},
-        { path: '/info', name: 'How does Breedly work?'},
         { path: '/contact', name: 'Contact us'}
       ],
       linksLogin: [

@@ -14,7 +14,7 @@
               <v-expansion-panel expand>
                 <v-expansion-panel-content v-for="animal in pets" :key="animal.name">
                   <template v-slot:actions>
-                      <v-icon small>fas fa-chevron-up</v-icon>
+                        <v-icon small>fas fa-chevron-up</v-icon>
 </template>
 
 <template v-slot:header>
@@ -78,7 +78,7 @@
         this.switchMale = false;
         this.switchPedigree = false;
       },
-
+  
       displayPets() {
         this.pets = this.constPets.filter((pet) => {
   
@@ -134,29 +134,15 @@
     watch: {
       searchText: function() {
         let text = this.searchText
-        let dict = this.tempPet
-        dict = []
   
-        this.pets.filter((pet) => {
-          if (text.length < 1) {
-            this.pets = this.constPets
-          } else if (pet.name.includes(text)) {
-            dict.push(pet)
-            this.pets = dict
+        this.pets = this.constPets.filter((pet) => {
+          if (text.length < 1 || pet.name.includes(text)) {
+            return true
           }
   
+          return false
         })
       }
     },
   };
 </script>
-
-<style scoped>
-  .search {
-    /* Multer */
-    /* background-image: url("../assets/grass-two.png"); */
-    background-repeat: no-repeat;
-    background-size: auto 40em;
-    background-position: bottom;
-  }
-</style>

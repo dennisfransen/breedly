@@ -9,9 +9,7 @@ import Register from './components/Register.vue'
 import Search from './components/Search.vue'
 import Login from './components/Login.vue'
 import Contact from './components/Contact.vue'
-// import '@mdi/font/css/materialdesignicons.css'
-// import 'vuetify/dist/vuetify.min.css'
-// import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import Profile from './components/Profile.vue'
 
 Vue.use(Router)
 Vue.use(Vuex)
@@ -28,7 +26,10 @@ Vue.use(Vuetify, {
 // Added vuex state and mutations to save if user is logged in or not
 const state = {
     userLoggedIn: '',
-    petId: ''
+    petId: '',
+    userName: '',
+    userEmail: '',
+    userLocation: ''
 }
 
 const mutations = {
@@ -49,7 +50,8 @@ const router = new Router({
         { path: '/register', name: 'register', component: Register },
         { path: '/search', name: 'search', component: Search },
         { path: '/login', name: 'login', component: Login },
-        { path: '/contact', name: 'contact', component: Contact }
+        { path: '/contact', name: 'contact', component: Contact },
+        { path: '/profile', name: 'profile', component: Profile}
     ]
 })
 
