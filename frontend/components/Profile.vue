@@ -24,16 +24,17 @@
 
                     <!-- add new pet -->
                     <v-card class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" style='font-size: 1.2em'>
-                    
-                            <v-card dark color="rgba(0, 0, 0, 0.1)" >
-                                <v-list-tile-title> Pet type: {{ userProfilePets.petType }} </v-list-tile-title>
+                            
+                            <v-card dark color="rgba(0, 0, 0, 0.1" >
+                                <v-list-tile-title> Pet type: {{ userProfilePets[0].type }} </v-list-tile-title>
                                 <br>
-                                <v-list-tile-title> Pet name: {{ userProfilePets.petName }} </v-list-tile-title>
+                                <v-list-tile-title> Pet name: {{ userProfilePets[0].petName }} </v-list-tile-title>
                                 <br>
-                                <v-list-tile-title> Pet age: {{ userProfilePets.petAge }} </v-list-tile-title>
+                                <v-list-tile-title> Pet age: {{ userProfilePets[0].petAge }} </v-list-tile-title>
                                 <br>
-                                <v-list-tile-title> Pet description: {{ userProfilePets.petDescription }} </v-list-tile-title>
+                                <v-list-tile-title> Pet description: {{ userProfilePets[0].petDescription }} </v-list-tile-title>
                             </v-card>
+
                     </v-card>  
                 </v-flex>
             </v-layout>
