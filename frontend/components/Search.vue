@@ -18,7 +18,7 @@
                   </template>
   
                   <template v-slot:header>
-                      <img style="min-height: 1.2em; max-width: 6em; padding-right: 2em;" :src="assets.png"/>
+                      <img style="min-height: 1.2em; max-width: 6em; padding-right: 2em;" :src="'http://localhost:3000/images/' + animal.imageName"/>
                     <div>
                       <h2>{{ animal.name }}</h2>
                       <p>{{ animal.type }}</p>

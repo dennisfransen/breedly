@@ -222,7 +222,6 @@
             .then(response => response)
             .then(result => {
               this.petInfo.imageName = result.data.filename 
-              console.log('imagename for pet', this.petInfo.imageName)
             })
             .catch(() => {
               console.log('Failed uploading image');
@@ -237,7 +236,6 @@
               })
               .then(response => response.text())
               .then(result => {
-                console.log('petimagename', this.petInfo.imageName)
                 console.log(result)
               })
               .catch(error => {
