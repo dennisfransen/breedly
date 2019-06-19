@@ -2,7 +2,7 @@
   <nav>
     <v-toolbar app>
       <!-- Logo with link to rot -->
-      <router-link class="underline" to="/">
+      <router-link class="underline mr-4" to="/">
         <v-toolbar-title class="text-uppercase display-1 grey--text">
           <span class="font-weight-bold">Breedly</span>
         </v-toolbar-title>
