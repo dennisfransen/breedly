@@ -9,6 +9,7 @@
 
                         <v-card-text >
                             
+<<<<<<< HEAD
                             <v-list-tile-title > EMAIL: <v-list-tile-subtitle> {{ userProfile.email }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
                             <v-list-tile-title> FULL NAME: <v-list-tile-subtitle> {{ userProfile.fullName }} </v-list-tile-subtitle> </v-list-tile-title>
@@ -16,6 +17,15 @@
                             <v-list-tile-title> PHONE NUMBER: <v-list-tile-subtitle> {{ userProfile.phoneNumber }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
                             <v-list-tile-title> COUNTY: <v-list-tile-subtitle> {{ userProfile.county }} </v-list-tile-subtitle> </v-list-tile-title>
+=======
+                            <v-list-tile-title > EMAIL: {{ userProfile.email }} </v-list-tile-title>
+                            <br>
+                            <v-list-tile-title> FULL NAME: {{ userProfile.fullName }} </v-list-tile-title>
+                            <br>
+                            <v-list-tile-title> PHONE NUMBER: {{ userProfile.phoneNumber }} </v-list-tile-title>
+                            <br>
+                            <v-list-tile-title> COUNTY: {{ userProfile.county }} </v-list-tile-title>
+>>>>>>> 24a51212cc177ea05df45bfb21b0640c0aba5f5f
                             <br>
                             <!-- <v-btn v-if="!addingPet" dark outline @click="addPet()" >ADD PET <v-icon color="green" right="" >add_circle_outline</v-icon></v-btn> -->
 
@@ -24,6 +34,7 @@
 
                     <!-- add new pet -->
                     <v-card class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" style='font-size: 1.2em'>
+<<<<<<< HEAD
                             
                         <!-- <v-list style="max-height: 550px" class="scroll-y" color="rgba(0, 0, 0, 0.2" ></v-list>
                             <v-card v-if="addingPet" class="text-xs-center" dark color="rgba(0, 0, 0, 0.2" flat tile >
@@ -49,8 +60,18 @@
                                 <v-list-tile-title> Pet age: <v-list-tile-subtitle> {{ userProfilePets[0].petAge }} </v-list-tile-subtitle> </v-list-tile-title>
                                 <br>
                                 <v-list-tile-title> Pet description: <v-list-tile-subtitle> {{ userProfilePets[0].petDescription }} </v-list-tile-subtitle> </v-list-tile-title>
+=======
+                    
+                            <v-card dark color="rgba(0, 0, 0, 0.1)" >
+                                <v-list-tile-title> Pet type: {{ userProfilePets.petType }} </v-list-tile-title>
+                                <br>
+                                <v-list-tile-title> Pet name: {{ userProfilePets.petName }} </v-list-tile-title>
+                                <br>
+                                <v-list-tile-title> Pet age: {{ userProfilePets.petAge }} </v-list-tile-title>
+                                <br>
+                                <v-list-tile-title> Pet description: {{ userProfilePets.petDescription }} </v-list-tile-title>
+>>>>>>> 24a51212cc177ea05df45bfb21b0640c0aba5f5f
                             </v-card>
-                        </v-card-text>
                     </v-card>  
                 </v-flex>
             </v-layout>
@@ -73,14 +94,14 @@ export default {
                 phoneNumber: "",
                 county: ""
             },
-            userProfilePets: [{
+            userProfilePets: {
                 petType: "",
                 petName: "",
                 petAge: "",
                 petDescription: "",
                 petPedigree: "",
                 petSex: ""
-            }],
+            },
             numbersPetArray: [],
             addingPet : false,
             petName: null,
@@ -113,10 +134,10 @@ export default {
                     for (const key in result) {
                         this.userProfilePets[key] = result[key]
 
-                        this.userProfilePets[key].petType = result[key].type
-                        this.userProfilePets[key].petName = result[key].name
-                        this.userProfilePets[key].petAge = result[key].age
-                        this.userProfilePets[key].petDescription = result[key].description
+                        this.userProfilePets.petType = result[key].type
+                        this.userProfilePets.petName = result[key].name
+                        this.userProfilePets.petAge = result[key].age
+                        this.userProfilePets.petDescription = result[key].description
                     }
 
                     this.userProfilePets[0].petType = result[0].type

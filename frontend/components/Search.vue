@@ -21,7 +21,7 @@
                       <img style="min-height: 1.2em; max-width: 6em; padding-right: 2em;" :src="'http://localhost:3000/images/' + animal.imageName"/>
                     <div>
                       <h2>{{ animal.name }}</h2>
-                      <p>{{ animal.type }}</p>
+                      <p>{{ animal.type }} | {{ checkGender(animal.gender) }} | Age: {{ animal.age }} | Pedigree: {{ checkPedigree(animal.pedigree) }}</p>
                     </div>
                   </template>
 
@@ -66,6 +66,9 @@
         switchFemale: false,
         switchMale: false,
         switchPedigree: false,
+
+        gender: null,
+        pedigree: null,
   
         constPets: null,
         pets: null,
@@ -130,6 +133,24 @@
             this.constPets = result;
             console.log("fetchPets works!");
           });
+      },
+      checkGender(gender) {
+        if(gender === 1) {
+          this.gender = 'Male'
+        } else {
+          this.gender = 'Female'
+        }
+
+        return this.gender
+      },
+      checkPedigree(pedigree) {
+        if (pedigree === 1) {
+          this.pedigree = 'Yes'
+        } else {
+          this.pedigree = 'No'
+        }
+
+        return this.pedigree
       }
     },
     watch: {
