@@ -18,13 +18,11 @@
                         How does it work?
                         </v-card-text>
                         <v-card-text style='font-size: 1.2em'>
-                        1. Create a profile for your pet
-                        </v-card-text>
-                        <v-card-text style='font-size: 1.2em'>
-                        2. Search for partner
-                        </v-card-text>
-                        <v-card-text style='font-size: 1.2em'>
-                        3. Let the fucking begin
+                            <ol>
+                                <li>1. Create a profile for your pet</li>
+                                <li>2. Search for partner</li>
+                                <li>3. Let the fucking begin</li>
+                            </ol>
                         </v-card-text>
                     </v-card>
                 </v-flex>
@@ -79,13 +77,9 @@
     }
 </script>
 
-<style scoped>
-    .about {
-        /* background-image: url('../assets/Dog_Background.jpg');
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-        position: static; */
+<style>
+    v-img {
         
     }
 </style>
+

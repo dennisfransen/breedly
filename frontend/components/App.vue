@@ -32,10 +32,19 @@
                 .then(response => {
                     return response.text()
                 }).then(result =>{
-                    console.log('who is loggeed in? ', result);
-                    
                     this.$store.commit('WhosLoggedIn', result)
+                    var id = this.$store.state.userId
                     
+                    this.getUserId()
+                })
+            },
+            getUserId(){
+                fetch('/api/getUserId/')
+                .then(response => {
+                    return response.text()
+                }).then(result =>{
+                    this.$store.commit('userIdLoggedIn', result)
+                    var id = this.$store.state.userId
                 })
             }
         }
