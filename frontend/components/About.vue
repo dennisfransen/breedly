@@ -38,25 +38,42 @@
 <script>
     export default {
         name: 'home',
+        created() {
+            this.fetchAboutInfo()
+        },
         data() {
             return {
                 aboutProps: [{
                         text: "Vision",
                         img: "./assets/eye-icon.png",
-                        msg: 'We at Breedly want to see a world where even our pets can find their true love online, and in the process giving us more loveable adorable pets.'
+                        msg: null
                     },
                     {
                         text: "Mission",
                         img: "./assets/rocket-icon.png",
-                        msg: 'Our mission is to supply the means necessary for your pet to be able to breed with a suitable partner.'        
+                        msg: null     
                     },
                     {
                         text: "Values",
                         img: "./assets/check-icon.png",
-                        msg: 'Animals First! That is our motto here at Breedly.'                    
+                        msg: null             
                     },
                 ],
                 
+            }
+        },
+        methods: {
+            fetchAboutInfo() {
+
+                fetch('/api/aboutText')
+                .then(response => response.json())
+                .then(result => {
+                    for (const key in result) {
+                            
+                        this.aboutProps[key].msg = result[key].info
+                        
+                    }
+                })
             }
         }
     }
