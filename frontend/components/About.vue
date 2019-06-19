@@ -18,13 +18,11 @@
                         How does it work?
                         </v-card-text>
                         <v-card-text style='font-size: 1.2em'>
-                        1. Create a profile for your pet
-                        </v-card-text>
-                        <v-card-text style='font-size: 1.2em'>
-                        2. Search for partner
-                        </v-card-text>
-                        <v-card-text style='font-size: 1.2em'>
-                        3. Let the fucking begin
+                            <ol>
+                                <li>1. Create a profile for your pet</li>
+                                <li>2. Search for partner</li>
+                                <li>3. Let the fucking begin</li>
+                            </ol>
                         </v-card-text>
                     </v-card>
                 </v-flex>
@@ -38,37 +36,50 @@
 <script>
     export default {
         name: 'home',
+        created() {
+            this.fetchAboutInfo()
+        },
         data() {
             return {
                 aboutProps: [{
                         text: "Vision",
                         img: "./assets/eye-icon-white.png",
-                        msg: 'We at Breedly want to see a world where even our pets can find their true love online, and in the process giving us more loveable adorable pets.'
+                        msg: null
                     },
                     {
                         text: "Mission",
                         img: "./assets/rocket-icon-white.png",
-                        msg: 'Our mission is to supply the means necessary for your pet to be able to breed with a suitable partner.'        
+                        msg: null     
                     },
                     {
                         text: "Values",
                         img: "./assets/check-icon-white.png",
-                        msg: 'Animals First! That is our motto here at Breedly.'                    
+                        msg: null             
                     },
                 ],
                 
+            }
+        },
+        methods: {
+            fetchAboutInfo() {
+
+                fetch('/api/aboutText')
+                .then(response => response.json())
+                .then(result => {
+                    for (const key in result) {
+                            
+                        this.aboutProps[key].msg = result[key].info
+                        
+                    }
+                })
             }
         }
     }
 </script>
 
-<style scoped>
-    .about {
-        /* background-image: url('../assets/Dog_Background.jpg');
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-        position: static; */
+<style>
+    v-img {
         
     }
 </style>
+

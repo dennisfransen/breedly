@@ -52,7 +52,6 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
         userFound = true
         response.status(200)
         request.params.userId
-        response.cookie('id', cookieId).send(tempUser.id)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         response.status(401)
@@ -67,6 +66,8 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
     } else {
       database.run('INSERT INTO cookieMonster VALUES (?,?)', [tempUser.id, cookieId]).then(() => {
         response.cookie('id', cookieId).send(tempUser.name)
+        
+        
       })
     }
   })
@@ -79,12 +80,24 @@ app.delete('/signout', (request, response) => {
   response.send()
 })
 
+// Query for app.vue to get cookie if user is already logged in
 app.get('/getCookies', (request, response) => {
   database.all('SELECT user.name FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId').then(user =>{
     if (user[0].name === undefined) {
       response.send('')
     } else {
       response.send(user[0].name)
+    }
+  })
+})
+
+// Query for app.vue to get user id if user is already logged in
+app.get('/getUserId', (request, response) => {
+  database.all('SELECT user.id FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId').then(user =>{
+    if (user[0].id === undefined) {
+      response.send('')
+    } else {
+      response.send(user[0].id)
     }
   })
 })
@@ -107,7 +120,6 @@ app.get('/users', (request, response) => {
  
 app.post('/file', upload.single('image'), (request, response) => {
   response.send(request.file)
-
 })
 
 app.post('/users', (request, response) => {
@@ -172,5 +184,11 @@ app.get('/userPets', (request, response) => {
 
 
 
+app.get('/aboutText', (request, response) => {
+  database.all('SELECT * FROM aboutus')
+  .then(aboutText => {
+    response.send(aboutText)
+  })
+})
 
 app.listen(3000)

@@ -15,14 +15,19 @@
                 <v-expansion-panel-content v-for="animal in pets" :key="animal.name">
                   <template v-slot:actions>
                         <v-icon small>fas fa-chevron-up</v-icon>
-</template>
-
-<template v-slot:header>
-  <div>
-    <h2>{{ animal.name }}</h2>
-    <p>{{ animal.type }}</p>
-  </div>
-</template>
+                  </template>
+  
+                  <template v-slot:header>
+<<<<<<< HEAD
+                      <img style="min-height: 1.2em; max-width: 6em; padding-right: 2em;" :src="'http://localhost:3000/images/' + animal.imageName"/>
+=======
+                      <img style="min-height: 1.2em; max-width: 6em; padding-right: 2em;"/>
+>>>>>>> 2923e6e9dbb86b96fcbb37501439d40434dfba10
+                    <div>
+                      <h2>{{ animal.name }}</h2>
+                      <p>{{ animal.type }}</p>
+                    </div>
+                  </template>
 
                   <v-card>
                     <v-card-text class="grey lighten-3">{{ animal.description }}</v-card-text>
