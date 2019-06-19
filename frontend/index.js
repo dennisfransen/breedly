@@ -29,12 +29,16 @@ const state = {
     petId: '',
     userName: '',
     userEmail: '',
-    userLocation: ''
+    userLocation: '',
+    userId: ''
 }
 
 const mutations = {
     WhosLoggedIn(state, name){
         state.userLoggedIn = name
+    },
+    userIdLoggedIn(state, id) {
+        state.userId = id
     }
 }
 
