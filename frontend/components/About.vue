@@ -19,9 +19,9 @@
                         </v-card-text>
                         <v-card-text style='font-size: 1.2em'>
                             <ol>
-                                <li>1. Create a profile for your pet</li>
-                                <li>2. Search for partner</li>
-                                <li>3. Let the fucking begin</li>
+                                <li>Create a profile for your pet</li>
+                                <li>Search for partner</li>
+                                <li>Let the fucking begin</li>
                             </ol>
                         </v-card-text>
                     </v-card>
