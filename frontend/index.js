@@ -55,7 +55,7 @@ const router = new Router({
         { path: '/search', name: 'search', component: Search },
         { path: '/login', name: 'login', component: Login },
         { path: '/contact', name: 'contact', component: Contact },
-        { path : '/profile', name: 'profile', component: Profile }
+        { path: '/profile', name: 'profile', component: Profile }
     ]
 })
 
