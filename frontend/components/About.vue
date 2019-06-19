@@ -42,17 +42,17 @@
             return {
                 aboutProps: [{
                         text: "Vision",
-                        img: "./assets/eye-icon.png",
+                        img: "./assets/eye-icon-white.png",
                         msg: 'We at Breedly want to see a world where even our pets can find their true love online, and in the process giving us more loveable adorable pets.'
                     },
                     {
                         text: "Mission",
-                        img: "./assets/rocket-icon.png",
+                        img: "./assets/rocket-icon-white.png",
                         msg: 'Our mission is to supply the means necessary for your pet to be able to breed with a suitable partner.'        
                     },
                     {
                         text: "Values",
-                        img: "./assets/check-icon.png",
+                        img: "./assets/check-icon-white.png",
                         msg: 'Animals First! That is our motto here at Breedly.'                    
                     },
                 ],

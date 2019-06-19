@@ -39,7 +39,7 @@ export default {
     return {
       email: null,
       password: null,
-      searchLink: "/search",
+      searchLink: '/search',
       notRegistered: null,
       wrongPassword: null,
       name: null
@@ -59,7 +59,7 @@ export default {
       this.notRegistered = false
       this.wrongPassword = false
 
-      fetch("/api/users/" + email + "/" + password).then(response => {
+      fetch('/api/users/' + email + '/' + password).then(response => {
         this.checkAuthentication(response.status)
         return response.text()
       }).then(result => {
@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
 .login {
-  background-image: url("../assets/Dog_Background.jpg");
+  background-image: url('../assets/Dog_Background.jpg');
   background-size: cover;
   height: 100%;
   width: 100%;

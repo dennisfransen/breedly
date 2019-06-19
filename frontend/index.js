@@ -11,10 +11,6 @@ import Login from './components/Login.vue'
 import Contact from './components/Contact.vue'
 import Profile from './components/Profile.vue'
 
-// import '@mdi/font/css/materialdesignicons.css'
-// import 'vuetify/dist/vuetify.min.css'
-// import 'material-design-icons-iconfont/dist/material-design-icons.css'
-
 Vue.use(Router)
 Vue.use(Vuex)
 Vue.use(Vuetify, {
@@ -29,7 +25,11 @@ Vue.use(Vuetify, {
 
 // Added vuex state and mutations to save if user is logged in or not
 const state = {
-    userLoggedIn: ''
+    userLoggedIn: '',
+    petId: '',
+    userName: '',
+    userEmail: '',
+    userLocation: ''
 }
 
 const mutations = {

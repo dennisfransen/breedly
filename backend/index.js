@@ -2,10 +2,13 @@ const express = require('express')
 const sqlite = require('sqlite')
 const bodyParser = require('body-parser')
 const uuidv4 = require('uuid/v4')
+const multer = require('multer')
+const path = require('path')
 var cookieParser = require('cookie-parser')
 
 const app = express()
 let database
+var upload = multer({dest: 'images/'})
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -14,12 +17,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use('/images', express.static(path.join(path.resolve(), 'images')))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
 sqlite.open('db.sqlite').then(database_ => {
   database = database_
 })
+
+app.post('/petImage')
 
 console.log('Database connection up and running')
 // Query for search.vue, show all animals in DB
@@ -45,6 +51,8 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
         cookieId = uuidv4()
         userFound = true
         response.status(200)
+        request.params.userId
+        response.cookie('id', cookieId).send(tempUser.id)
         break
       } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
         response.status(401)
@@ -72,7 +80,6 @@ app.delete('/signout', (request, response) => {
 })
 
 app.get('/getCookies', (request, response) => {
-  
   database.all('SELECT user.name FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId').then(user =>{
     if (user[0].name === undefined) {
       response.send('')
@@ -94,11 +101,15 @@ app.get('/users', (request, response) => {
   database.all('SELECT * FROM user')
   .then(users => {
     response.send(users)
-    console.log(users);
     
   })
  })
  
+app.post('/file', upload.single('image'), (request, response) => {
+  response.send(request.file)
+
+})
+
 app.post('/users', (request, response) => {
   var tempId = uuidv4()
   database.run('INSERT INTO user VALUES (?, ?, ?, ?, ?, ?)', [request.body.name, request.body.password, request.body.email, request.body.location, request.body.number, tempId])
@@ -111,10 +122,55 @@ app.post('/users', (request, response) => {
 })
 
 app.post('/pets', (request, response) => {
-  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?)', [request.body.name, request.body.userId, request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age])
+  database.run('INSERT INTO pet VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [request.body.name, request.body.userId, request.body.type, request.body.description, request.body.gender, request.body.pedigree, request.body.age, request.body.imageName])
   .then(() => {
-    response.send('INSERTED PET')
+    response.send('inserted!')
   })
 })
+
+
+
+
+
+
+
+
+
+
+app.get('/userCredentials', (request, response) => {
+
+  database.all('SELECT user.* FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId')
+  .then(userCredentials => { 
+    
+    response.send(userCredentials)
+
+  })
+
+})
+
+app.get('/userPets', (request, response) => {
+
+  database.all('SELECT pet.* FROM pet INNER JOIN cookieMonster ON pet.userid = cookieMonster.userId')
+  .then(petInfo => {
+
+    console.log('this is petinfo: ', petInfo)
+    response.send(petInfo)
+
+  })
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000)

@@ -14,15 +14,15 @@
               <v-expansion-panel expand>
                 <v-expansion-panel-content v-for="animal in pets" :key="animal.name">
                   <template v-slot:actions>
-                    <v-icon small>fas fa-chevron-up</v-icon>
-                  </template>
+                        <v-icon small>fas fa-chevron-up</v-icon>
+</template>
 
-                  <template v-slot:header>
-                    <div>
-                      <h2>{{ animal.name }}</h2>
-                      <p>{{ animal.type }}</p>
-                    </div>
-                  </template>
+<template v-slot:header>
+  <div>
+    <h2>{{ animal.name }}</h2>
+    <p>{{ animal.type }}</p>
+  </div>
+</template>
 
                   <v-card>
                     <v-card-text class="grey lighten-3">{{ animal.description }}</v-card-text>
@@ -38,12 +38,12 @@
               <v-divider class="mx-3"></v-divider>
 
               <v-container fluid>
-                <v-switch color="success" @click="filterFemale" :label="`Female`"></v-switch>
-                <v-switch color="success" @click="filterMale" v-model="switchMale" :label="`Male`"></v-switch>
+                <v-switch color="success" @click="displayPets" v-model="switchFemale" :label="`Female`"></v-switch>
+                <v-switch color="success" @click="displayPets" v-model="switchMale" :label="`Male`"></v-switch>
 
                 <v-divider></v-divider>
 
-                <v-switch color="success" v-model="switchPedigree" :label="`Pedigree`"></v-switch>
+                <v-switch color="success" @click="displayPets" v-model="switchPedigree" :label="`Pedigree`"></v-switch>
 
                 <v-btn @click="clearFilter">Clear filter</v-btn>
               </v-container>
@@ -63,9 +63,9 @@
     data() {
       return {
         switchFemale: false,
-        switchMale: null,
+        switchMale: false,
         switchPedigree: false,
-
+  
         constPets: null,
         pets: null,
         searchText: null,
@@ -78,29 +78,49 @@
         this.switchMale = false;
         this.switchPedigree = false;
       },
-      filterFemale() {
-
-      },
-
-      filterMale() {
-
-        let maleAnimals = []
-
-        for (let i = 0; i < this.pets.length; i++) {
-          let pet = this.pets[i];
-          if (pet.gender === 1) {
-            maleAnimals.push(pet)
+  
+      displayPets() {
+        this.pets = this.constPets.filter((pet) => {
+  
+          if (!this.switchMale && !this.switchFemale && !this.switchPedigree) {
+            return true
           }
-        }
-
-        if (this.switchMale){
-          console.log(maleAnimals)
-          this.pets = maleAnimals
-        } else if (!this.switchMale) {
-          this.pets = this.constPets
-        }
+  
+          if (!this.switchPedigree && this.switchFemale && pet.gender === 0) {
+            return true
+          }
+  
+          if (!this.switchPedigree && this.switchMale && pet.gender === 1) {
+            return true
+          }
+  
+          if (!this.switchFemale && !this.switchMale && this.switchPedigree && pet.pedigree === 1) {
+            return true
+          }
+  
+          if (this.switchPedigree && this.switchMale && pet.gender === 1 && pet.pedigree === 1) {
+            return true
+          }
+  
+          if (this.switchPedigree && this.switchFemale && pet.gender === 0 && pet.pedigree === 1) {
+            return true
+          }
+  
+          if (this.switchPedigree && this.switchFemale && this.switchMale && pet.pedigree === 1) {
+            return true
+          }
+  
+          return false
+        })
       },
-
+  
+      clearFilter() {
+        this.switchFemale = false;
+        this.switchMale = false;
+        this.switchPedigree = false;
+        this.displayPets()
+      },
+  
       fetchPets() {
         fetch("/api/pets")
           .then(response => response.json())
@@ -111,32 +131,18 @@
           });
       }
     },
-     watch: {
-      searchText: function () {
+    watch: {
+      searchText: function() {
         let text = this.searchText
-        let dict = this.tempPet
-        dict = []
-
-        this.pets.filter( (pet) => {
-          if (text.length < 1) {
-            this.pets = this.constPets
-          } else if (pet.name.includes(text)) {
-            dict.push(pet)
-            this.pets = dict
+  
+        this.pets = this.constPets.filter((pet) => {
+          if (text.length < 1 || pet.name.includes(text)) {
+            return true
           }
-
+  
+          return false
         })
       }
     },
   };
 </script>
-
-<style scoped>
-  .search {
-    /* Multer */
-    /* background-image: url("../assets/grass-two.png"); */
-    background-repeat: no-repeat;
-    background-size: auto 40em;
-    background-position: bottom;
-  }
-</style>
