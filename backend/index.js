@@ -120,39 +120,11 @@ app.post('/pets', (request, response) => {
   })
 })
 
-
-
-
-
-
-
-
-
-
-app.get('/userCredentials'), (request, response) => {
-
-  database.run('SELECT user.* FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId')
-  .then(userCredentials => {
-    
-    console.log('This is the userCredentials: ' + userCredentials)
-
-    response.send(userCredentials)
-
+app.get('/aboutText', (request, response) => {
+  database.all('SELECT * FROM aboutus')
+  .then(aboutText => {
+    response.send(aboutText)
   })
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
 app.listen(3000)
