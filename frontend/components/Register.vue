@@ -223,8 +223,8 @@
             .then(result => {
               this.petInfo.imageName = result.data.filename 
             })
-            .catch(() => {
-              console.log('Failed uploading image');
+            .catch(error => {
+              console.log(error);
             })
             .then(() => {
               fetch('/api/pets', {
