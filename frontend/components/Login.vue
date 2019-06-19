@@ -61,7 +61,7 @@ export default {
 
       fetch('/api/users/' + email + '/' + password).then(response => {
         this.checkAuthentication(response.status)
-        return response.json()
+        return response.text()
       }).then(result => {
         
         this.name = result

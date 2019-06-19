@@ -33,8 +33,6 @@
                     return response.text()
                 }).then(result =>{
                     this.$store.commit('WhosLoggedIn', result)
-                    var id = this.$store.state.userId
-                    
                     this.getUserId()
                 })
             },
@@ -44,7 +42,6 @@
                     return response.text()
                 }).then(result =>{
                     this.$store.commit('userIdLoggedIn', result)
-                    var id = this.$store.state.userId
                 })
             }
         }
