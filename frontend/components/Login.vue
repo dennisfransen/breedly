@@ -61,8 +61,9 @@ export default {
 
       fetch('/api/users/' + email + '/' + password).then(response => {
         this.checkAuthentication(response.status)
-        return response.text()
+        return response.json()
       }).then(result => {
+        
         this.name = result
         this.$store.commit('WhosLoggedIn', this.name)
       })
