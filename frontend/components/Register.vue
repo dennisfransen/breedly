@@ -50,6 +50,7 @@
 
                 <form method="post" enctype="multipart/form-data">
                   <input v-on:change="saveImage()" type="file" name="uploadedImage" ref="uploadedImage"/>
+                  <!-- <v-btn v-on:change="saveImage()" type="file" name="uploadedImage" ref="uploadedImage">UPLOAD</v-btn> -->
                 </form>
                 
                 <v-btn dark outline @click="back()"> Back <v-icon color="red" right="" >arrow_back</v-icon></v-btn>
@@ -164,7 +165,7 @@
           userId: null,
           type: type,
           description: description,
-          gender: this.gender,
+          gender: this.petFemale,
           pedigree: pedigree,
           age: age,
           imageName: ''
@@ -179,16 +180,14 @@
         }
 
       },
-      // this.gender true for female false for male
-      petGender(gender) {
-        if (!gender) {
+      //true for female, false for male
+      petGender(chosenGender) {
+        if (!chosenGender) {
           this.petFemale = false
           this.petMale = true
-          this.gender = false
-        } else if (gender) {
+        } else if (chosenGender) {
           this.petFemale = true
           this.petMale = false
-          this.gender = true
         }
       },
       saveImage() {

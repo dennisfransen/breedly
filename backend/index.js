@@ -100,7 +100,6 @@ app.get('/contacts', (request, response) => {
 app.post('/file', upload.single('image'), (request, response) => {
   console.log(request.file)
   response.send(request.file)
-
 })
 
 app.post('/users', (request, response) => {
