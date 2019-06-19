@@ -9,13 +9,13 @@
 
                         <v-card-text >
                             
-                            <v-list-item-title > EMAIL: <v-list-item-subtitle> {{ userProfile.email }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-tile-title > EMAIL: <v-list-tile-subtitle> {{ userProfile.email }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
-                            <v-list-item-title> FULL NAME: <v-list-item-subtitle> {{ userProfile.fullName }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-tile-title> FULL NAME: <v-list-tile-subtitle> {{ userProfile.fullName }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
-                            <v-list-item-title> PHONE NUMBER: <v-list-item-subtitle> {{ userProfile.phoneNumber }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-tile-title> PHONE NUMBER: <v-list-tile-subtitle> {{ userProfile.phoneNumber }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
-                            <v-list-item-title> COUNTY: <v-list-item-subtitle> {{ userProfile.county }} </v-list-item-subtitle> </v-list-item-title>
+                            <v-list-tile-title> COUNTY: <v-list-tile-subtitle> {{ userProfile.county }} </v-list-tile-subtitle> </v-list-tile-title>
                             <br>
                             <!-- <v-btn v-if="!addingPet" dark outline @click="addPet()" >ADD PET <v-icon color="green" right="" >add_circle_outline</v-icon></v-btn> -->
 
@@ -42,13 +42,13 @@
                         <!-- loop for all pets from user -->
                         <v-card-text v-for="info in numbersPetArray" :key="info.userProfilePets">
                             <v-card v-if="!addingPet" dark color="rgba(0, 0, 0, 0.1" >
-                                <v-list-item-title> Pet type: <v-list-item-subtitle> {{ userProfilePets[0].type }} </v-list-item-subtitle> </v-list-item-title>
+                                <v-list-tile-title> Pet type: <v-list-tile-subtitle> {{ userProfilePets[0].type }} </v-list-tile-subtitle> </v-list-tile-title>
                                 <br>
-                                <v-list-item-title> Pet name: <v-list-item-subtitle> {{ userProfilePets[0].petName }} </v-list-item-subtitle> </v-list-item-title>
+                                <v-list-tile-title> Pet name: <v-list-tile-subtitle> {{ userProfilePets[0].petName }} </v-list-tile-subtitle> </v-list-tile-title>
                                 <br>
-                                <v-list-item-title> Pet age: <v-list-item-subtitle> {{ userProfilePets[0].petAge }} </v-list-item-subtitle> </v-list-item-title>
+                                <v-list-tile-title> Pet age: <v-list-tile-subtitle> {{ userProfilePets[0].petAge }} </v-list-tile-subtitle> </v-list-tile-title>
                                 <br>
-                                <v-list-item-title> Pet description: <v-list-item-subtitle> {{ userProfilePets[0].petDescription }} </v-list-item-subtitle> </v-list-item-title>
+                                <v-list-tile-title> Pet description: <v-list-tile-subtitle> {{ userProfilePets[0].petDescription }} </v-list-tile-subtitle> </v-list-tile-title>
                             </v-card>
                         </v-card-text>
                     </v-card>  
