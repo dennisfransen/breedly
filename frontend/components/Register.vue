@@ -45,8 +45,8 @@
 
                 <v-switch dark v-model="pedigree" label="Pedigree"></v-switch>
                 
-                <v-switch dark @click="petGender(gender)" v-model="petMale" label="Male"></v-switch> 
-                <v-switch dark @click="petGender(!gender)" v-model="petFemale" label="Female"></v-switch>
+                <v-switch dark @click="petGender(petMale)" v-model="petMale" label="Male"></v-switch> 
+                <v-switch dark @click="petGender(!petMale)" v-model="petFemale" label="Female"></v-switch>
 
                 <form method="post" enctype="multipart/form-data">
                   <input v-on:change="saveImage()" type="file" name="uploadedImage" ref="uploadedImage"/>
@@ -165,7 +165,7 @@
           userId: null,
           type: type,
           description: description,
-          gender: this.petFemale,
+          gender: this.petMale,
           pedigree: pedigree,
           age: age,
           imageName: ''
@@ -182,13 +182,13 @@
       },
       //true for female, false for male
       petGender(chosenGender) {
-        if (!chosenGender) {
-          this.petFemale = false
+        if (chosenGender) {
           this.petMale = true
-        } else if (chosenGender) {
-          this.petFemale = true
-          this.petMale = false
-        }
+          this.petFemale = false
+        } else if (!chosenGender) {
+            this.petMale = false
+            this.petFemale = true
+          }
       },
       saveImage() {
 
