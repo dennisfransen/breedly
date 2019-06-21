@@ -68,9 +68,9 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
 
 app.delete('/signout', (request, response) => {
   database.run('DELETE FROM cookieMonster WHERE secretId=?', [request.cookies.id])
-  response.clearCookie(request.cookies.id);
+  response.clearCookie(request.cookies.id)
 	  response.send()
-	})
+})
 	
 // Query for app.vue to get cookie if user is already logged in
 app.get('/getCookies', (request, response) => {
