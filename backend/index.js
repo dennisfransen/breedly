@@ -41,14 +41,14 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
     var userFound = false
     var cookieId = null
     for (let i = 0; i < users.length; i++) {
-      tempUser = users[i];
+      tempUser = users[i]
       if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
         cookieId = uuidv4()
         userFound = true
         response.status(200)
         request.params.userId
         break
-	    } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
+      } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
 	      response.status(401)
         break
       } else {
