@@ -44,25 +44,26 @@ app.get('/users/:userEmail/:userPassword', (request, response) => {
       tempUser = users[i];
       if (request.params.userEmail === tempUser.email && request.params.userPassword === tempUser.password) {
         cookieId = uuidv4()
-	        userFound = true
-	        response.status(200)
-	        request.params.userId
-	        break
-	      } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
-	        response.status(401)
+        userFound = true
+        response.status(200)
+        request.params.userId
+        break
+	    } else if (request.params.userEmail === tempUser.email && request.params.userPassword !== tempUser.password) {
+	      response.status(401)
         break
       } else {
         response.status(404)
       }
     }
+
     if (!userFound) {
       response.send('')
-	    } else {
-	      database.run('INSERT INTO cookieMonster VALUES (?,?)', [tempUser.id, cookieId]).then(() => {
-	        response.cookie('id', cookieId).send(tempUser.name)
-	      })
-	    }
-	  })
+    } else {
+      database.run('INSERT INTO cookieMonster VALUES (?,?)', [tempUser.id, cookieId]).then(() => {
+      response.cookie('id', cookieId).send(tempUser.name)
+      })
+    }
+	})
 })
 
 app.delete('/signout', (request, response) => {
@@ -75,10 +76,10 @@ app.delete('/signout', (request, response) => {
 app.get('/getCookies', (request, response) => {
   database.all('SELECT user.name FROM user INNER JOIN cookieMonster ON user.id = cookieMonster.userId').then(user =>{
     if (user[0].name === undefined) {
-    response.send('')
-  } else {
-    response.send(user[0].name)
-  }
+      response.send('')
+    } else {
+      response.send(user[0].name)
+    }
   })
 })
 	
